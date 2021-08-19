@@ -12,8 +12,8 @@ AudioSystem::AudioSystem()
 	}
 
 	// read the values fromthe config
-	m_music_volume = audio_config.get_value<f32>("music_volume");
-	m_sound_volume = audio_config.get_value<f32>("sound_volume");
+	m_music_volume = audio_config.get_value<f32>("music_volume") * 100.0f;
+	m_sound_volume = audio_config.get_value<f32>("sound_volume") * 100.0f;
 }
 
 AudioSystem::~AudioSystem()
@@ -27,8 +27,8 @@ AudioSystem::~AudioSystem()
 		return;
 	}
 
-	config_file << "music_volume " << (m_music_volume / 100.0f) << "\n";
-	config_file << "sound_volume " << (m_sound_volume / 100.0f) << "\n";
+	config_file << "music_volume " << (std::round(m_music_volume) / 100.0f) << "\n";
+	config_file << "sound_volume " << (std::round(m_sound_volume) / 100.0f) << "\n";
 }
 
 bool AudioSystem::load_music(const std::string &name, const std::string &filename)

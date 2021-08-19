@@ -3,6 +3,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <string>
+#include <cmath>
 #include <memory>
 
 #include <SFML/Audio.hpp>
