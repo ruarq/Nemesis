@@ -41,13 +41,13 @@ void MenuState::update(GameData &data)
 
 	if (m_buttons[MENUSTATE_OPTIONS_BTN].is_pressed(data))
 	{
-		data.state_queue.push(std::move(OptionsState::Ptr(new OptionsState())));
-		data.state_queue.push(std::move(MenuState::Ptr(new MenuState())));
+		data.state_queue.push(OptionsState::Ptr(new OptionsState()));
+		data.state_queue.push(MenuState::Ptr(new MenuState()));
 		is_finished = true;
 	}
 	else if (m_buttons[MENUSTATE_QUIT_BTN].is_pressed(data))
 	{
-		data.state_queue.push(std::move(CreditState::Ptr(new CreditState())));
+		data.state_queue.push(CreditState::Ptr(new CreditState()));
 		is_finished = true;
 	}
 }
