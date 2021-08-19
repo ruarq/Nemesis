@@ -2,7 +2,7 @@
 
 #include "Vec2.hpp"
 
-class Tile
+class Tile final
 {
 public:
 	enum Type
@@ -18,4 +18,5 @@ public:
 
 public:
 	Type type = Empty;
+	bool has_key = false; // wether there is a key on the tile or not
 };
