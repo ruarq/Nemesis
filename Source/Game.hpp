@@ -14,6 +14,7 @@
 #include "AudioSystem.hpp"
 #include "Input.hpp"
 #include "Singleton.hpp"
+#include "Room.hpp"
 
 class Game final
 {

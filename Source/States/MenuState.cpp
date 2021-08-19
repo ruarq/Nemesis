@@ -1,5 +1,6 @@
 #include "MenuState.hpp"
 
+#include "PlayingState.hpp"
 #include "OptionsState.hpp"
 #include "CreditState.hpp"
 
@@ -39,7 +40,12 @@ void MenuState::update(GameData &data)
 		}
 	}
 
-	if (m_buttons[MENUSTATE_OPTIONS_BTN].is_pressed(data))
+	if (m_buttons[MENUSTATE_PLAY_BTN].is_pressed(data))
+	{
+		data.state_queue.push(PlayingState::Ptr(new PlayingState()));
+		is_finished = true;
+	}
+	else if (m_buttons[MENUSTATE_OPTIONS_BTN].is_pressed(data))
 	{
 		data.state_queue.push(OptionsState::Ptr(new OptionsState()));
 		data.state_queue.push(MenuState::Ptr(new MenuState()));
