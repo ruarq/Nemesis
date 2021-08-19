@@ -1,0 +1,35 @@
+> About <
+This game was developed being part of the
+"Themed Horror Game Jam #1" hosted on itch.io.
+The theme for the jam was "Omen of Doom".
+Bonus challenges were
+- a supernatural protagonist
+- a nightmare scene/sequence
+- the protagonist is impended by a higher power
+The length of the submission period was four weeks.
+I tried to implement a supernatural protagonist and
+the protagonist is impended by a higher power (the nemesis).
+
+
+
+> Music & Sounds <
+"Loopable Horror Track" by Muncheybobo from OpenGameArt.com
+"Happy Tune" by syncopika from OpenGameArt.com
+
+Thanks to Muncheybobo and syncopika
+for letting other people use your music!
+
+
+
+> Art <
+Ruarq (me)
+
+
+
+> Programming <
+Ruarq (me)
+
+
+
+Thank you for playing my game!
+I hope it was a little bit scary...
