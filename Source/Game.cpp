@@ -4,7 +4,7 @@ void Game::run()
 {
 	this->create_window();
 	this->load_data();
-
+	
 	data.state_queue.front()->on_enter(data);
 
 	while (data.window.isOpen())
@@ -60,6 +60,10 @@ void Game::create_window()
 void Game::load_data()
 {
 	UI::Fonts::change("FreeMono.ttf");
+
+	sf::Image window_icon;
+	window_icon.loadFromFile(Data::Images::path("Icon.png"));
+	data.window.setIcon(window_icon.getSize().x, window_icon.getSize().y, window_icon.getPixelsPtr());
 
 	gAudioSystem->load_music("happy", Data::Audio::path("mu_happy.wav"));
 	gAudioSystem->load_music("horror", Data::Audio::path("mu_horror.wav"));

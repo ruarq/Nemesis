@@ -1,6 +1,3 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-
 #include "Game.hpp"
 #include "States/MenuState.hpp"
 
