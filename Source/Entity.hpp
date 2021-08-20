@@ -14,8 +14,8 @@ public:
 	using Ptr = std::shared_ptr<Entity>;
 
 public:
-	virtual void update(World &world) = 0;
-	virtual void render(sf::RenderWindow &window) const = 0;
+	virtual void Update(World &world) = 0;
+	virtual void Render(sf::RenderWindow &window) const = 0;
 
 public:
 	Vec2f pos;
