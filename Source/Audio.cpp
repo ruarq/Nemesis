@@ -2,9 +2,9 @@
 
 sf_Music_Ptr Audio::m_currentMusic;
 std::unordered_map<std::string, sf_Music_Ptr> Audio::m_musicFiles;
-f32 Audio::m_musicVolume = 1.0f, Audio::m_soundVolume = 1.0f;
+f32 Audio::m_musicVolume = 100.0f, Audio::m_soundVolume = 100.0f;
 
-Audio::Audio()
+void Audio::Init()
 {
 	Config audioConfig;
 	const std::string filename = Data::Config::Path("Audio.cfg");
@@ -20,7 +20,7 @@ Audio::Audio()
 	m_soundVolume = audioConfig.GetValue<f32>("sound_volume") * 100.0f;
 }
 
-Audio::~Audio()
+void Audio::Shutdown()
 {
 	const std::string filename = Data::Config::Path("Audio.cfg");
 	std::ofstream configFile(filename);
@@ -54,17 +54,17 @@ bool Audio::PlayMusic(const std::string &name, const bool loop)
 {
 	if (m_musicFiles.find(name) != m_musicFiles.end())
 	{
-		if (m_currentMusic)
-		{
-			m_currentMusic->stop();
-		}
-
 		// if the music is already playing do nothing
 		if (m_musicFiles.at(name) == m_currentMusic)
 		{
 			// but update the loop
 			m_currentMusic->setLoop(loop);
 			return true;
+		}
+
+		if (m_currentMusic)
+		{
+			m_currentMusic->stop();
 		}
 
 		m_currentMusic = m_musicFiles.at(name);

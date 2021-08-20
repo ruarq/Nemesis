@@ -17,10 +17,9 @@ using sf_Music_Ptr = std::shared_ptr<sf::Music>;
 class Audio final
 {
 public:
-	Audio();
-	~Audio();
+	static void Init();
+	static void Shutdown();
 
-public:
 	/**
 	 * @brief load a music file.
 	 * @param name the alias for the music file, needed when playing the music etc.
