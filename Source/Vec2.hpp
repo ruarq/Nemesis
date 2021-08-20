@@ -34,9 +34,9 @@ public:
 	}
 
 	template<typename U>
-	operator Vec2t<U>() const
+	operator Vec2<U>() const
 	{
-		return Vec2t<U>(x, y);
+		return Vec2<U>(x, y);
 	}
 
 public:
