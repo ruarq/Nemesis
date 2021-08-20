@@ -2,9 +2,11 @@
 
 #include "../GameState.hpp"
 #include "../GameData.hpp"
-#include "../Room.hpp"
 #include "../Data.hpp"
 #include "../Input.hpp"
+#include "../AudioSystem.hpp"
+#include "../Tilemap.hpp"
+#include "../Time.hpp"
 
 class PlayingState final : public GameState
 {
@@ -17,5 +19,6 @@ public:
 	void render(GameData &data) const override;
 
 private:
-	Room test_room;
+	Tilemap m_tilemap;
+	f32 m_current_tile = 0.0f;
 };

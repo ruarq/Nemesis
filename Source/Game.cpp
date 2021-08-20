@@ -67,16 +67,6 @@ void Game::load_data()
 
 	gAudioSystem->load_music("happy", Data::Audio::path("mu_happy.wav"));
 	gAudioSystem->load_music("horror", Data::Audio::path("mu_horror.wav"));
-
-	if (!Room::ground_texture.loadFromFile(Data::Images::path("Ground.png")))
-	{
-		std::cout << "[Game] => Couldn't load \"" << Data::Images::path("Ground.png") << "\n";
-	}
-	
-	if (!Room::wall_texture.loadFromFile(Data::Images::path("Wall.png")))
-	{
-		std::cout << "[Game] => Couldn't load \"" << Data::Images::path("Wall.png") << "\n";
-	}
 }
 
 void Game::handle_events()
