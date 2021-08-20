@@ -4,7 +4,7 @@
 
 #include "../Vec2.hpp"
 #include "../Input.hpp"
-#include "../GameData.hpp"
+#include "UI.hpp"
 
 namespace UI
 {
@@ -12,7 +12,7 @@ namespace UI
 class Slider final : public sf::Drawable
 {
 public:
-	void Update(const GameData &data);
+	void Update();
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 	f32 Value() const;
 	void SetValue(const f32 value);

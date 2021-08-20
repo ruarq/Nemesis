@@ -17,10 +17,10 @@ class Fonts final
 public:
 	/**
 	 * @brief change the global ui font.
-	 * @param fontName font file name, only the filename. the function will search in Data::Fonts::Path() for that file.
+	 * @param filename filename of the font
 	 * @return true if the font was changed successfully
 	 */
-	static bool Change(const std::string &fontName);
+	static bool Change(const std::string &filename);
 
 public:
 	static sf::Font currentFont;

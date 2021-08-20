@@ -4,8 +4,8 @@
 
 #include "../Vec2.hpp"
 #include "../Input.hpp"
-#include "../GameData.hpp"
 #include "TextBox.hpp"
+#include "UI.hpp"
 
 namespace UI
 {
@@ -13,8 +13,8 @@ namespace UI
 class Button final : public TextBox
 {
 public:
-	bool IsHovered(const GameData &data) const;
-	bool IsPressed(const GameData &data) const;
+	bool IsHovered() const;
+	bool IsPressed() const;
 };
 
 }

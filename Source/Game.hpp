@@ -6,8 +6,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "UI/Fonts.hpp"
-#include "GameData.hpp"
-#include "GameState.hpp"
+#include "UI/UI.hpp"
 #include "Data.hpp"
 #include "Config.hpp"
 #include "Time.hpp"
@@ -25,6 +24,6 @@ private:
 	void HandleEvents();
 
 public:
-	GameData data;
-	GameState::Ptr currentState;
+	sf::RenderWindow window;
+	bool isRunning = false;
 };

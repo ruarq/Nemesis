@@ -2,7 +2,9 @@
 
 #include <memory>
 
-class GameData;
+#include <SFML/Graphics.hpp>
+
+#include "Game.hpp"
 
 class GameState
 {
@@ -13,10 +15,14 @@ public:
 	virtual ~GameState() = default;
 
 public:
-	virtual void OnEnter(GameData &data) {}
-	virtual void Update(GameData &data) = 0;
-	virtual void Render(GameData &data) const = 0;
-	virtual void OnExit(GameData &data) {}
+	virtual void OnEnter() {}
+	virtual void Update() = 0;
+	// TODO(ruarq): remove window parameter since it's already accessible through GameState::game->window
+	virtual void Render(sf::RenderWindow &window) const = 0;
+	virtual void OnExit() {}
 
-	virtual GameState::Ptr NextState(GameData &data) = 0;
+	virtual GameState::Ptr NextState() = 0;
+
+public:
+	Game *game = nullptr;
 };

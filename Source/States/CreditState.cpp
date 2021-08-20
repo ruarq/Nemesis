@@ -2,7 +2,7 @@
 
 using namespace std::string_literals;
 
-void CreditState::OnEnter(GameData &data)
+void CreditState::OnEnter()
 {
 	// Load the credits font
 	UI::Fonts::Change("FreeMono.ttf");
@@ -16,8 +16,8 @@ void CreditState::OnEnter(GameData &data)
 	// set up text box (without text)
 	m_credits.wrappedText = false;
 	m_credits.textAlign = UI::TextAlign::Left;
-	m_credits.box.width = data.window.getSize().x;
-	m_credits.box.top = data.window.getSize().y;
+	m_credits.box.width = game->window.getSize().x;
+	m_credits.box.top = game->window.getSize().y;
 
 	// load the Credits.txt file
 	const std::string filename = Data::Other::Path("Credits.txt");
@@ -36,14 +36,14 @@ void CreditState::OnEnter(GameData &data)
 	}
 }
 
-void CreditState::Update(GameData &data)
+void CreditState::Update()
 {
 	m_credits.box.top -= scrollSpeed * Time::Dt();
 
 	m_credits.AdjustBoxHeight();
 	if (m_credits.box.top + m_credits.box.height < 0.0f || Input::Any())
 	{
-		data.isRunning = false;
+		game->isRunning = false;
 	}
 
 	// fade the music
@@ -57,12 +57,14 @@ void CreditState::Update(GameData &data)
 	}
 }
 
-void CreditState::Render(GameData &data) const
+void CreditState::Render(sf::RenderWindow &window) const
 {
-	data.window.draw(m_credits);
+	UI::BeginRender();
+	window.draw(m_credits);
+	UI::EndRender();
 }
 
-GameState::Ptr CreditState::NextState(GameData &data)
+GameState::Ptr CreditState::NextState()
 {
 	return nullptr;
 }

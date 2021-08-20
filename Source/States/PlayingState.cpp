@@ -2,7 +2,7 @@
 
 #include "MenuState.hpp"
 
-void PlayingState::OnEnter(GameData &data)
+void PlayingState::OnEnter()
 {
 	Audio::PlayMusic("horror", true);
 	
@@ -23,16 +23,16 @@ void PlayingState::OnEnter(GameData &data)
 	}
 }
 
-void PlayingState::Update(GameData &data)
+void PlayingState::Update()
 {
 }
 
-void PlayingState::Render(GameData &data) const
+void PlayingState::Render(sf::RenderWindow &window) const
 {
-	m_tilemap.Render(data.window);
+	m_tilemap.Render(window);
 }
 
-GameState::Ptr PlayingState::NextState(GameData &data)
+GameState::Ptr PlayingState::NextState()
 {
 	if (Input::Pressed(sf::Keyboard::Key::Escape))
 	{

@@ -1,37 +1,40 @@
 #include "Game.hpp"
 
+#include "GameState.hpp"
 #include "States/MenuState.hpp"
 
 void Game::Run()
 {
 	this->CreateWindow();
 	this->LoadData();
-	data.isRunning = true;
+	isRunning = true;
 
 	/**
 	 * initialize systems
 	 */
 	Audio::Init();
+	UI::Init(window);
 
 	/**
 	 * initialize state
 	 */
-	currentState = GameState::Ptr(new MenuState());
-	currentState->OnEnter(data);
+	GameState::Ptr currentState(new MenuState());
+	currentState->OnEnter();
 
 	/**
 	 * main loop
 	 */
-	while (data.window.isOpen() && data.isRunning)
+	while (window.isOpen() && isRunning)
 	{
 		/**
 		 * handle state transitions
 		 */
-		if (GameState::Ptr nextState = currentState->NextState(data))
+		if (GameState::Ptr nextState = currentState->NextState())
 		{
-			currentState->OnExit(data);
+			currentState->OnExit();
 			currentState = std::move(nextState);
-			currentState->OnEnter(data);
+			currentState->game = this;
+			currentState->OnEnter();
 		}
 
 		/**
@@ -48,15 +51,15 @@ void Game::Run()
 		/**
 		 * draw & update
 		 */
-		data.window.clear();
+		window.clear();
 
 		// update state
-		currentState->Update(data);
+		currentState->Update();
 		
 		// render state
-		currentState->Render(data);
+		currentState->Render(window);
 	
-		data.window.display();
+		window.display();
 	}
 
 	/**
@@ -80,7 +83,7 @@ void Game::CreateWindow()
 	if (!video_cfg.LoadFromFile(filename))
 	{
 		std::cout << "[Game] => Couldn't load \"" << filename << "\" : creating window with default parameters.\n";
-		data.window.create(sf::VideoMode(800, 600), "Nemesis");
+		window.create(sf::VideoMode(800, 600), "Nemesis");
 	}
 
 	if (video_cfg.GetValue<bool>("fullscreen"))
@@ -91,7 +94,7 @@ void Game::CreateWindow()
 	/**
 	 * create the window with the config
 	 */
-	data.window.create(
+	window.create(
 		sf::VideoMode(video_cfg.GetValue<i32>("xres"), video_cfg.GetValue<i32>("yres")),
 		"Nemesis",
 		style);
@@ -104,12 +107,12 @@ void Game::LoadData()
 	 */
 	sf::Image window_icon;
 	window_icon.loadFromFile(Data::Images::Path("Icon.png"));
-	data.window.setIcon(window_icon.getSize().x, window_icon.getSize().y, window_icon.getPixelsPtr());
+	window.setIcon(window_icon.getSize().x, window_icon.getSize().y, window_icon.getPixelsPtr());
 
 	/**
 	 * load fonts
 	 */
-	UI::Fonts::Change("FreeMono.ttf");
+	UI::Fonts::Change(Data::Fonts::Path("FreeMono.ttf"));
 
 	/**
 	 * load audio files
@@ -121,12 +124,12 @@ void Game::LoadData()
 void Game::HandleEvents()
 {
 	sf::Event event;
-	while (data.window.pollEvent(event))
+	while (window.pollEvent(event))
 	{
 		switch (event.type)
 		{
 			case sf::Event::Closed:
-				data.window.close();
+				window.close();
 				break;
 
 			case sf::Event::KeyPressed:

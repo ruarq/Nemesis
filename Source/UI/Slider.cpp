@@ -3,9 +3,9 @@
 namespace UI
 {
 
-void Slider::Update(const GameData &data)
+void Slider::Update()
 {
-	const Vec2f mousePos = sf::Mouse::getPosition(data.window);
+	const Vec2f mousePos = sf::Mouse::getPosition(_RenderWindow());
 	sf::FloatRect collisionRect = rect;
 	collisionRect.height *= 2.0f;
 	collisionRect.top -= collisionRect.height / 2.0f;

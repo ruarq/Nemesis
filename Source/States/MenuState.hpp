@@ -5,8 +5,8 @@
 #include "../UI/TextBox.hpp"
 #include "../UI/Button.hpp"
 #include "../UI/Positioning.hpp"
+#include "../UI/UI.hpp"
 #include "../GameState.hpp"
-#include "../Game.hpp"
 #include "../Audio.hpp"
 #include "../Input.hpp"
 
@@ -20,11 +20,11 @@ public:
 	using Ptr = std::unique_ptr<MenuState>;
 
 public:
-	void OnEnter(GameData &data) override;
-	void Update(GameData &data) override;
-	void Render(GameData &data) const override;
+	void OnEnter() override;
+	void Update() override;
+	void Render(sf::RenderWindow &window) const override;
 
-	GameState::Ptr NextState(GameData &data) override;
+	GameState::Ptr NextState() override;
 
 public:
 	UI::TextBox m_title;

@@ -3,14 +3,14 @@
 namespace UI
 {
 
-bool Button::IsHovered(const GameData &data) const
+bool Button::IsHovered() const
 {
-	return box.contains(sf::Vector2f(sf::Mouse::getPosition(data.window)));
+	return box.contains(sf::Vector2f(sf::Mouse::getPosition(_RenderWindow())));
 }
 
-bool Button::IsPressed(const GameData &data) const
+bool Button::IsPressed() const
 {
-	return this->IsHovered(data) && Input::Released(sf::Mouse::Left);
+	return this->IsHovered() && Input::Released(sf::Mouse::Left);
 }
 
 }

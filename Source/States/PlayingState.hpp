@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../GameState.hpp"
-#include "../GameData.hpp"
 #include "../Data.hpp"
 #include "../Input.hpp"
 #include "../Audio.hpp"
@@ -15,11 +14,11 @@ public:
 	using Ptr = std::unique_ptr<PlayingState>;
 
 public:
-	void OnEnter(GameData &data) override;
-	void Update(GameData &data) override;
-	void Render(GameData &data) const override;
+	void OnEnter() override;
+	void Update() override;
+	void Render(sf::RenderWindow &window) const override;
 
-	GameState::Ptr NextState(GameData &data) override;
+	GameState::Ptr NextState() override;
 
 private:
 	Tilemap m_tilemap;

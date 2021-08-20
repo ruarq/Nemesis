@@ -5,9 +5,9 @@
 #include "../UI/TextBox.hpp"
 #include "../UI/Positioning.hpp"
 #include "../UI/Fonts.hpp"
+#include "../UI/UI.hpp"
 #include "../Types.hpp"
 #include "../GameState.hpp"
-#include "../GameData.hpp"
 #include "../Data.hpp"
 #include "../Time.hpp"
 #include "../Audio.hpp"
@@ -23,11 +23,11 @@ public:
 	static constexpr f32 musicFade = 250.0f; // the amount of height of the text box that need to be left on screen for the music to start to fade.
 
 public:
-	void OnEnter(GameData &data) override;
-	void Update(GameData &data) override;
-	void Render(GameData &data) const override;
+	void OnEnter() override;
+	void Update() override;
+	void Render(sf::RenderWindow &window) const override;
 
-	GameState::Ptr NextState(GameData &data) override;
+	GameState::Ptr NextState() override;
 
 private:
 	UI::TextBox m_credits;
