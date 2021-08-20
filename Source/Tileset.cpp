@@ -4,7 +4,11 @@ TileId InvalidTileId = -1;
 
 bool ValidateTileSize(const Vec2u &tilemapSize, const Vec2u &tileSize)
 {
-	// TODO(ruarq): explain what this shit is.
+	/**
+	 * the tilemapSize should be a multiple of tileSize,
+	 * so that an exact amount of tiles fit along an axis (not like 25.76 tiles along the x or y axis).
+	 * this functions just makes sure that the tilemapSize is a multiple of tileSize.
+	 */
 	if (tilemapSize.x == 0 || tilemapSize.y == 0 ||
 		tileSize.x == 0 || tileSize.y == 0)
 	{
