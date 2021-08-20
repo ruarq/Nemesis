@@ -5,8 +5,19 @@ void Game::Run()
 	this->CreateWindow();
 	this->LoadData();
 
+	/**
+	 * initialize systems
+	 */
+	Audio::Init();
+
+	/**
+	 * initialize state
+	 */
 	data.states.front()->OnEnter(data);
 
+	/**
+	 * main loop
+	 */
 	while (data.window.isOpen())
 	{
 		/**
@@ -49,6 +60,11 @@ void Game::Run()
 	
 		data.window.display();
 	}
+
+	/**
+	 * shutdowns systems
+	 */
+	Audio::Shutdown();
 }
 
 void Game::CreateWindow()
