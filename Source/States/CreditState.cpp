@@ -43,7 +43,7 @@ void CreditState::Update(GameData &data)
 	m_credits.AdjustBoxHeight();
 	if (m_credits.box.top + m_credits.box.height < 0.0f || Input::Any())
 	{
-		isFinished = true;
+		data.isRunning = false;
 	}
 
 	// fade the music
@@ -60,4 +60,9 @@ void CreditState::Update(GameData &data)
 void CreditState::Render(GameData &data) const
 {
 	data.window.draw(m_credits);
+}
+
+GameState::Ptr CreditState::NextState(GameData &data)
+{
+	return nullptr;
 }

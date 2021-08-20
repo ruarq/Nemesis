@@ -19,6 +19,8 @@ public:
 	void Update(GameData &data) override;
 	void Render(GameData &data) const override;
 
+	GameState::Ptr NextState(GameData &data) override;
+
 private:
 	UI::TextBox m_musicVolTextBox;
 	UI::Slider m_musicVolSlider;

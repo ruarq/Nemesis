@@ -41,11 +41,6 @@ void OptionsState::Update(GameData &data)
 	{
 		m_backButton.drawBox = false;
 	}
-
-	if (m_backButton.IsPressed(data))
-	{
-		isFinished = true;
-	}
 }
 
 void OptionsState::Render(GameData &data) const
@@ -55,4 +50,14 @@ void OptionsState::Render(GameData &data) const
 	data.window.draw(m_soundVolTextBox);
 	data.window.draw(m_soundVolSlider);
 	data.window.draw(m_backButton);
+}
+
+GameState::Ptr OptionsState::NextState(GameData &data)
+{
+	if (m_backButton.IsPressed(data))
+	{
+		return GameState::Ptr(new MenuState());
+	}
+
+	return nullptr;
 }

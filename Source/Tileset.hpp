@@ -33,6 +33,11 @@ public:
 	 */
 	u32 NumTiles() const;
 
+	/**
+	 * @brief get the size of the tileset in tiles
+	 */
+	Vec2u Size() const;
+
 public:
 	/**
 	 * @brief the dimension of one tile in the tileset image

@@ -19,6 +19,8 @@ public:
 	void Update(GameData &data) override;
 	void Render(GameData &data) const override;
 
+	GameState::Ptr NextState(GameData &data) override;
+
 private:
 	Tilemap m_tilemap;
 	f32 m_current_tile = 0.0f;

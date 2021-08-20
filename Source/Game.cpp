@@ -1,9 +1,12 @@
 #include "Game.hpp"
 
+#include "States/MenuState.hpp"
+
 void Game::Run()
 {
 	this->CreateWindow();
 	this->LoadData();
+	data.isRunning = true;
 
 	/**
 	 * initialize systems
@@ -13,27 +16,22 @@ void Game::Run()
 	/**
 	 * initialize state
 	 */
-	data.states.front()->OnEnter(data);
+	currentState = GameState::Ptr(new MenuState());
+	currentState->OnEnter(data);
 
 	/**
 	 * main loop
 	 */
-	while (data.window.isOpen())
+	while (data.window.isOpen() && data.isRunning)
 	{
 		/**
 		 * handle state transitions
 		 */
-		if (data.states.front()->isFinished)
+		if (GameState::Ptr nextState = currentState->NextState(data))
 		{
-			data.states.front()->OnLeave(data);
-			data.states.pop();
-
-			if (data.states.empty())
-			{
-				break;
-			}
-
-			data.states.front()->OnEnter(data);
+			currentState->OnExit(data);
+			currentState = std::move(nextState);
+			currentState->OnEnter(data);
 		}
 
 		/**
@@ -53,10 +51,10 @@ void Game::Run()
 		data.window.clear();
 
 		// update state
-		data.states.front()->Update(data);
+		currentState->Update(data);
 		
 		// render state
-		data.states.front()->Render(data);
+		currentState->Render(data);
 	
 		data.window.display();
 	}

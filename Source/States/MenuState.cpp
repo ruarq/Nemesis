@@ -39,23 +39,6 @@ void MenuState::Update(GameData &data)
 			button.drawBox = false;
 		}
 	}
-
-	if (m_buttons[MENUSTATE_PLAY_BTN].IsPressed(data))
-	{
-		data.states.push(PlayingState::Ptr(new PlayingState()));
-		isFinished = true;
-	}
-	else if (m_buttons[MENUSTATE_OPTIONS_BTN].IsPressed(data))
-	{
-		data.states.push(OptionsState::Ptr(new OptionsState()));
-		data.states.push(MenuState::Ptr(new MenuState()));
-		isFinished = true;
-	}
-	else if (m_buttons[MENUSTATE_QUIT_BTN].IsPressed(data))
-	{
-		data.states.push(CreditState::Ptr(new CreditState()));
-		isFinished = true;
-	}
 }
 
 void MenuState::Render(GameData &data) const
@@ -66,4 +49,22 @@ void MenuState::Render(GameData &data) const
 	{
 		data.window.draw(button);
 	}
+}
+
+GameState::Ptr MenuState::NextState(GameData &data)
+{
+	if (m_buttons[MENUSTATE_PLAY_BTN].IsPressed(data))
+	{
+		return GameState::Ptr(new PlayingState());
+	}
+	else if (m_buttons[MENUSTATE_OPTIONS_BTN].IsPressed(data))
+	{
+		return GameState::Ptr(new OptionsState());
+	}
+	else if (m_buttons[MENUSTATE_QUIT_BTN].IsPressed(data))
+	{
+		return GameState::Ptr(new CreditState());
+	}
+
+	return nullptr;
 }

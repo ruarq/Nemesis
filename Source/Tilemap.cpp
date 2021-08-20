@@ -25,7 +25,7 @@ void Tilemap::Render(sf::RenderWindow &window) const
 			const TileId tileId = m_tiles.at(x + m_size.x * y);
 			if (tileId != InvalidTileId)
 			{
-				tileset.Render(window, sf::FloatRect(x * tileSize.x, y * tileSize.y, tileSize.x, tileSize.y), tileId);
+				tileset.Render(window, sf::FloatRect(x * tileSize.x + offset.x, y * tileSize.y + offset.y, tileSize.x, tileSize.y), tileId);
 			}
 		}
 	}

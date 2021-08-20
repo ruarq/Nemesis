@@ -26,4 +26,5 @@ private:
 
 public:
 	GameData data;
+	GameState::Ptr currentState;
 };

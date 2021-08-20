@@ -24,6 +24,8 @@ public:
 	void Update(GameData &data) override;
 	void Render(GameData &data) const override;
 
+	GameState::Ptr NextState(GameData &data) override;
+
 public:
 	UI::TextBox m_title;
 	std::array<UI::Button, 3> m_buttons;

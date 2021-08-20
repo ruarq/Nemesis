@@ -55,3 +55,8 @@ u32 Tileset::NumTiles() const
 {
 	return m_numTiles.x * m_numTiles.y;
 }
+
+Vec2u Tileset::Size() const
+{
+	return m_numTiles;
+}

@@ -16,8 +16,7 @@ public:
 	virtual void OnEnter(GameData &data) {}
 	virtual void Update(GameData &data) = 0;
 	virtual void Render(GameData &data) const = 0;
-	virtual void OnLeave(GameData &data) {}
-	
-public:
-	bool isFinished = false;
+	virtual void OnExit(GameData &data) {}
+
+	virtual GameState::Ptr NextState(GameData &data) = 0;
 };
