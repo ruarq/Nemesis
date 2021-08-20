@@ -15,7 +15,7 @@ Audio::Audio()
 		return;
 	}
 
-	// read the values fromthe config
+	// read the values from the config
 	m_musicVolume = audioConfig.GetValue<f32>("music_volume") * 100.0f;
 	m_soundVolume = audioConfig.GetValue<f32>("sound_volume") * 100.0f;
 }
