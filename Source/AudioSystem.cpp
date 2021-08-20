@@ -50,6 +50,11 @@ bool AudioSystem::play_music(const std::string &name, const bool loop)
 {
 	if (m_music_files.find(name) != m_music_files.end())
 	{
+		if (m_current_music)
+		{
+			m_current_music->stop();
+		}
+
 		// if the music is already playing do nothing
 		if (m_music_files.at(name) == m_current_music)
 		{
