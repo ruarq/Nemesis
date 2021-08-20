@@ -1,6 +1,6 @@
 #include "Tileset.hpp"
 
-TileId InvalidTileId = std::numeric_limits<TileId>::max();
+TileId InvalidTileId = -1;
 
 bool ValidateTileSize(const Vec2u &tilemapSize, const Vec2u &tileSize)
 {
