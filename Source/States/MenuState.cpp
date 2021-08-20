@@ -6,7 +6,7 @@
 
 void MenuState::OnEnter(GameData &data)
 {
-	AudioSystem::PlayMusic("happy", true);
+	Audio::PlayMusic("happy", true);
 
 	m_title.text = "NEMESIS";
 	m_title.box = UI::Pos::Centered(data, Vec2f(200.0f, 50.0f), Vec2f(0.0f, -120.0f));

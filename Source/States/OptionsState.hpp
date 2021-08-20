@@ -7,7 +7,7 @@
 #include "../GameState.hpp"
 #include "../GameData.hpp"
 #include "../Input.hpp"
-#include "../AudioSystem.hpp"
+#include "../Audio.hpp"
 
 class OptionsState final : public GameState
 {

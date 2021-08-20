@@ -8,10 +8,10 @@ void CreditState::OnEnter(GameData &data)
 	UI::Fonts::Change("FreeMono.ttf");
 
 	// play the happy music again
-	AudioSystem::PlayMusic("happy", true);
+	Audio::PlayMusic("happy", true);
 
 	// needed for the fade later on
-	m_onEnterMusicVolume = AudioSystem::MusicVolume();
+	m_onEnterMusicVolume = Audio::MusicVolume();
 
 	// set up text box (without text)
 	m_credits.wrappedText = false;
@@ -52,7 +52,7 @@ void CreditState::Update(GameData &data)
 		const float volume = ((m_credits.box.top + m_credits.box.height) / musicFade) * m_onEnterMusicVolume;
 		if (volume >= 0.0f && volume <= 100.0f)
 		{
-			AudioSystem::SetMusicVolume(volume);
+			Audio::SetMusicVolume(volume);
 		}
 	}
 }

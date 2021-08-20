@@ -10,7 +10,7 @@
 #include "../GameData.hpp"
 #include "../Data.hpp"
 #include "../Time.hpp"
-#include "../AudioSystem.hpp"
+#include "../Audio.hpp"
 #include "../Input.hpp"
 
 class CreditState final : public GameState

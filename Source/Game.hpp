@@ -11,7 +11,7 @@
 #include "Data.hpp"
 #include "Config.hpp"
 #include "Time.hpp"
-#include "AudioSystem.hpp"
+#include "Audio.hpp"
 #include "Input.hpp"
 
 class Game final

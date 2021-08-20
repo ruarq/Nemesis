@@ -4,7 +4,7 @@
 
 void PlayingState::OnEnter(GameData &data)
 {
-	AudioSystem::PlayMusic("horror", true);
+	Audio::PlayMusic("horror", true);
 	
 	Tileset ts;
 	ts.tileSize = Vec2u(8, 8);

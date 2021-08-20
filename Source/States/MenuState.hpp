@@ -7,7 +7,7 @@
 #include "../UI/Positioning.hpp"
 #include "../GameState.hpp"
 #include "../Game.hpp"
-#include "../AudioSystem.hpp"
+#include "../Audio.hpp"
 #include "../Input.hpp"
 
 #define MENUSTATE_PLAY_BTN 0

@@ -10,7 +10,7 @@ void OptionsState::OnEnter(GameData &data)
 
 	m_musicVolSlider.minValue = 0.0f;
 	m_musicVolSlider.maxValue = 100.0f;
-	m_musicVolSlider.SetValue(AudioSystem::MusicVolume());
+	m_musicVolSlider.SetValue(Audio::MusicVolume());
 	m_musicVolSlider.rect = UI::Pos::Centered(data, Vec2f(200.0f, 10.0f), Vec2f(0.0f, -40.0f));
 
 	m_soundVolTextBox.text = "SOUND VOL";
@@ -31,7 +31,7 @@ void OptionsState::Update(GameData &data)
 	m_musicVolSlider.Update(data);
 	m_soundVolSlider.Update(data);
 
-	AudioSystem::SetMusicVolume(m_musicVolSlider.Value());
+	Audio::SetMusicVolume(m_musicVolSlider.Value());
 
 	if (m_backButton.IsHovered(data))
 	{

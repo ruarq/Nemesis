@@ -14,11 +14,11 @@
 // sf::Music::Ptr
 using sf_Music_Ptr = std::shared_ptr<sf::Music>;
 
-class AudioSystem final
+class Audio final
 {
 public:
-	AudioSystem();
-	~AudioSystem();
+	Audio();
+	~Audio();
 
 public:
 	/**

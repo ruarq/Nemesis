@@ -65,8 +65,8 @@ void Game::LoadData()
 	window_icon.loadFromFile(Data::Images::Path("Icon.png"));
 	data.window.setIcon(window_icon.getSize().x, window_icon.getSize().y, window_icon.getPixelsPtr());
 
-	AudioSystem::LoadMusic("happy", Data::Audio::Path("mu_happy.wav"));
-	AudioSystem::LoadMusic("horror", Data::Audio::Path("mu_horror.wav"));
+	Audio::LoadMusic("happy", Data::Audio::Path("mu_happy.wav"));
+	Audio::LoadMusic("horror", Data::Audio::Path("mu_horror.wav"));
 }
 
 void Game::HandleEvents()
