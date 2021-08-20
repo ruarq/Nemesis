@@ -7,14 +7,12 @@ void PlayingState::on_enter(GameData &data)
 	gAudioSystem->play_music("horror", true);
 	
 	Tileset ts;
-	ts.tile_size.x = 8;
-	ts.tile_size.y = 8;
+	ts.tile_size = Vec2u(8, 8);
 	ts.LoadFromFile(Data::Images::path("TestTileset.png"));
 
 	m_tilemap.Create(Vec2u(32, 32));
 	m_tilemap.tileset = ts;
-	m_tilemap.tile_size.x = 32.0f;
-	m_tilemap.tile_size.y = 32.0f;
+	m_tilemap.tile_size = Vec2f(32.0f, 32.0f);
 	
 	for (u32 y = 0; y < m_tilemap.Size().y; y++)
 	{
