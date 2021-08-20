@@ -6,6 +6,7 @@
 #include "../Input.hpp"
 #include "../Audio.hpp"
 #include "../Tilemap.hpp"
+#include "../Tileset.hpp"
 #include "../Time.hpp"
 
 class PlayingState final : public GameState
