@@ -3,23 +3,23 @@
 namespace UI
 {
 
-void Slider::update(const GameData &data)
+void Slider::Update(const GameData &data)
 {
-	const Vec2f mouse_pos = sf::Mouse::getPosition(data.window);
-	sf::FloatRect collision_rect = rect;
-	collision_rect.height *= 2.0f;
-	collision_rect.top -= collision_rect.height / 2.0f;
-	if (gInput->down(sf::Mouse::Button::Left) && collision_rect.contains(mouse_pos))
+	const Vec2f mousePos = sf::Mouse::getPosition(data.window);
+	sf::FloatRect collisionRect = rect;
+	collisionRect.height *= 2.0f;
+	collisionRect.top -= collisionRect.height / 2.0f;
+	if (Input::Down(sf::Mouse::Button::Left) && collisionRect.contains(mousePos))
 	{
-		m_value = (mouse_pos.x - rect.left) / rect.width;
+		m_value = (mousePos.x - rect.left) / rect.width;
 		
-		if (m_value > m_normal_max)
+		if (m_value > m_normalMax)
 		{
-			m_value = m_normal_max;
+			m_value = m_normalMax;
 		}
-		else if (m_value < m_normal_min)
+		else if (m_value < m_normalMin)
 		{
-			m_value = m_normal_min;
+			m_value = m_normalMin;
 		}
 	}
 }
@@ -40,14 +40,14 @@ void Slider::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	target.draw(button);
 }
 
-float Slider::value() const
+float Slider::Value() const
 {
-	return (max_value - min_value) * m_value + min_value;
+	return (maxValue - minValue) * m_value + minValue;
 }
 
-void Slider::set_value(const f32 value)
+void Slider::SetValue(const f32 value)
 {
-	m_value = (value - min_value) / (max_value - min_value);
+	m_value = (value - minValue) / (maxValue - minValue);
 }
 
 }

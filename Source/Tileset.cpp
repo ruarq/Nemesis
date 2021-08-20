@@ -21,32 +21,32 @@ bool Tileset::LoadFromFile(const std::string &filename)
 		return false;
 	}
 
-	if (!ValidateTileSize(m_tileset.getSize(), tile_size))
+	if (!ValidateTileSize(m_tileset.getSize(), tileSize))
 	{
 		std::cout << "[Tileset] => Couldn't validate tile size of \"" << filename << "\"\n";
 		return false;
 	}
 
-	m_num_tiles.x = m_tileset.getSize().x / tile_size.x;
-	m_num_tiles.y = m_tileset.getSize().y / tile_size.y;
+	m_numTiles.x = m_tileset.getSize().x / tileSize.x;
+	m_numTiles.y = m_tileset.getSize().y / tileSize.y;
 	
 	return true;
 }
 
-void Tileset::Render(sf::RenderTarget &target, const sf::FloatRect &dest, const TileId tileid) const
+void Tileset::Render(sf::RenderTarget &target, const sf::FloatRect &dest, const TileId tileId) const
 {
-	const Vec2u tile_pos((tileid % m_num_tiles.x) * tile_size.x, (tileid / m_num_tiles.x) * tile_size.y);
-	const sf::IntRect tile_rect(tile_pos.x, tile_pos.y, tile_size.x, tile_size.y);
+	const Vec2u tilePos((tileId % m_numTiles.x) * tileSize.x, (tileId / m_numTiles.x) * tileSize.y);
+	const sf::IntRect tileRect(tilePos.x, tilePos.y, tileSize.x, tileSize.y);
 
 	sf::Sprite sprite;
 	sprite.setTexture(m_tileset);
-	sprite.setTextureRect(tile_rect);
+	sprite.setTextureRect(tileRect);
 	sprite.setPosition(dest.left, dest.top);
-	sprite.setScale(dest.width / f32(tile_size.x), dest.height / f32(tile_size.y));
+	sprite.setScale(dest.width / f32(tileSize.x), dest.height / f32(tileSize.y));
 	target.draw(sprite);
 }
 
 u32 Tileset::NumTiles() const
 {
-	return m_num_tiles.x * m_num_tiles.y;
+	return m_numTiles.x * m_numTiles.y;
 }

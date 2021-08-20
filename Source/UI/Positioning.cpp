@@ -6,17 +6,17 @@ namespace UI
 namespace Pos
 {
 
-sf::FloatRect centered(const GameData &data, const Vec2f &size, const Vec2f &offset)
+sf::FloatRect Centered(const GameData &data, const Vec2f &size, const Vec2f &offset)
 {
-	sf::FloatRect centered_rect;
+	sf::FloatRect centeredRect;
 	const Vec2f window_size = data.window.getSize();
 
-	centered_rect.left = window_size.x / 2.0f - size.x / 2.0f + offset.x;
-	centered_rect.top = window_size.y / 2.0f - size.y / 2.0f + offset.y;
-	centered_rect.width = size.x;
-	centered_rect.height = size.y;
+	centeredRect.left = window_size.x / 2.0f - size.x / 2.0f + offset.x;
+	centeredRect.top = window_size.y / 2.0f - size.y / 2.0f + offset.y;
+	centeredRect.width = size.x;
+	centeredRect.height = size.y;
 	
-	return centered_rect;
+	return centeredRect;
 }
 
 }

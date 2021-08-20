@@ -8,7 +8,7 @@ class Tilemap final
 {
 public:
 	void Create(const Vec2u &size);
-	void SetTile(const Vec2u &pos, const TileId tile_id);
+	void SetTile(const Vec2u &pos, const TileId tileId);
 	void Render(sf::RenderWindow &window) const;
 	Vec2u Size() const;
 
@@ -16,7 +16,7 @@ public:
 	/**
 	 * @brief how big each tile should be
 	 */
-	Vec2f tile_size;
+	Vec2f tileSize;
 
 	/**
 	 * @brief essentially the top-left position of where the tilemap should be drawn.

@@ -14,13 +14,13 @@ class Tileset final
 {
 public:
 	bool LoadFromFile(const std::string &filename);
-	void Render(sf::RenderTarget &target, const sf::FloatRect &dest, const TileId tileid) const;
+	void Render(sf::RenderTarget &target, const sf::FloatRect &dest, const TileId tileId) const;
 	u32 NumTiles() const;
 
 public:
-	Vec2u tile_size;
+	Vec2u tileSize;
 
 private:
 	sf::Texture m_tileset;
-	Vec2u m_num_tiles;
+	Vec2u m_numTiles;
 };

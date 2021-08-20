@@ -1,14 +1,20 @@
 #include "Input.hpp"
 
-void Input::update()
+std::array<bool, sf::Keyboard::KeyCount> Input::m_keys;
+std::array<bool, sf::Keyboard::KeyCount> Input::m_prevKeys;
+
+std::array<bool, sf::Mouse::ButtonCount> Input::m_buttons;
+std::array<bool, sf::Mouse::ButtonCount> Input::m_prevButtons;
+
+void Input::Update()
 {
-	m_prev_keys = m_keys;
-	m_prev_buttons = m_buttons;
+	m_prevKeys = m_keys;
+	m_prevButtons = m_buttons;
 }
 
-void Input::handle_key_event(const sf::Event &event)
+void Input::HandleKeyEvent(const sf::Event &event)
 {
-	m_prev_keys = m_keys;
+	m_prevKeys = m_keys;
 
 	if (event.type == sf::Event::KeyPressed)
 	{
@@ -20,24 +26,24 @@ void Input::handle_key_event(const sf::Event &event)
 	}
 }
 
-bool Input::pressed(const sf::Keyboard::Key key) const
+bool Input::Pressed(const sf::Keyboard::Key key)
 {
-	return m_prev_keys[key] == false && m_keys[key] == true;
+	return m_prevKeys[key] == false && m_keys[key] == true;
 }
 
-bool Input::down(const sf::Keyboard::Key key) const
+bool Input::Down(const sf::Keyboard::Key key)
 {
 	return m_keys[key] == true;
 }
 
-bool Input::released(const sf::Keyboard::Key key) const
+bool Input::Released(const sf::Keyboard::Key key)
 {
-	return m_prev_keys[key] == true && m_keys[key] == false;
+	return m_prevKeys[key] == true && m_keys[key] == false;
 }
 
-void Input::handle_mouse_event(const sf::Event &event)
+void Input::HandleMouseEvent(const sf::Event &event)
 {
-	m_prev_buttons = m_buttons;
+	m_prevButtons = m_buttons;
 
 	if (event.type == sf::Event::MouseButtonPressed)
 	{
@@ -49,22 +55,22 @@ void Input::handle_mouse_event(const sf::Event &event)
 	}
 }
 
-bool Input::pressed(const sf::Mouse::Button button) const
+bool Input::Pressed(const sf::Mouse::Button button)
 {
-	return m_prev_buttons[button] == false && m_buttons[button] == true;
+	return m_prevButtons[button] == false && m_buttons[button] == true;
 }
 
-bool Input::down(const sf::Mouse::Button button) const
+bool Input::Down(const sf::Mouse::Button button)
 {
 	return m_buttons[button];
 }
 
-bool Input::released(const sf::Mouse::Button button) const
+bool Input::Released(const sf::Mouse::Button button)
 {
-	return m_prev_buttons[button] == true && m_buttons[button] == false;
+	return m_prevButtons[button] == true && m_buttons[button] == false;
 }
 
-bool Input::any() const
+bool Input::Any()
 {
 	for (const bool key : m_keys)
 	{

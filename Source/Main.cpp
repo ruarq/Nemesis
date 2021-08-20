@@ -4,8 +4,8 @@
 int main()
 {
 	Game game;
-	game.data.state_queue.push(MenuState::Ptr(new MenuState()));
-	game.run();	
+	game.data.states.push(MenuState::Ptr(new MenuState()));
+	game.Run();	
 
 	return 0;
 }

@@ -2,57 +2,57 @@
 
 #include "MenuState.hpp"
 
-void OptionsState::on_enter(GameData &data)
+void OptionsState::OnEnter(GameData &data)
 {
-	m_music_vol_tb.text = "MUSIC VOL";
-	m_music_vol_tb.box = UI::Pos::centered(data, Vec2f(200.0f, 10.0f), Vec2f(-100.0f, -50.0f));
-	m_music_vol_tb.font_size = 15.0f;
+	m_musicVolTextBox.text = "MUSIC VOL";
+	m_musicVolTextBox.box = UI::Pos::Centered(data, Vec2f(200.0f, 10.0f), Vec2f(-100.0f, -50.0f));
+	m_musicVolTextBox.fontSize = 15.0f;
 
-	m_music_vol_slider.min_value = 0.0f;
-	m_music_vol_slider.max_value = 100.0f;
-	m_music_vol_slider.set_value(gAudioSystem->get_music_volume());
-	m_music_vol_slider.rect = UI::Pos::centered(data, Vec2f(200.0f, 10.0f), Vec2f(0.0f, -40.0f));
+	m_musicVolSlider.minValue = 0.0f;
+	m_musicVolSlider.maxValue = 100.0f;
+	m_musicVolSlider.SetValue(AudioSystem::MusicVolume());
+	m_musicVolSlider.rect = UI::Pos::Centered(data, Vec2f(200.0f, 10.0f), Vec2f(0.0f, -40.0f));
 
-	m_sound_vol_tb.text = "SOUND VOL";
-	m_sound_vol_tb.box = UI::Pos::centered(data, Vec2f(200.0f, 10.0f), Vec2f(-100.0f, -10.0f));
-	m_sound_vol_tb.font_size = 15.0f;
+	m_soundVolTextBox.text = "SOUND VOL";
+	m_soundVolTextBox.box = UI::Pos::Centered(data, Vec2f(200.0f, 10.0f), Vec2f(-100.0f, -10.0f));
+	m_soundVolTextBox.fontSize = 15.0f;
 
-	m_sound_vol_slider.min_value = 0.0f;
-	m_sound_vol_slider.max_value = 100.0f;
-	m_sound_vol_slider.rect = UI::Pos::centered(data, Vec2f(200.0f, 10.0f));
+	m_soundVolSlider.minValue = 0.0f;
+	m_soundVolSlider.maxValue = 100.0f;
+	m_soundVolSlider.rect = UI::Pos::Centered(data, Vec2f(200.0f, 10.0f));
 
-	m_back_btn.text = "BACK";
-	m_back_btn.text_align = UI::TextAlign::centered;
-	m_back_btn.box = UI::Pos::centered(data, Vec2f(200.0f, 50.0f), Vec2f(0.0f, 40.0f));
+	m_backButton.text = "BACK";
+	m_backButton.textAlign = UI::TextAlign::Centered;
+	m_backButton.box = UI::Pos::Centered(data, Vec2f(200.0f, 50.0f), Vec2f(0.0f, 40.0f));
 }
 
-void OptionsState::update(GameData &data)
+void OptionsState::Update(GameData &data)
 {
-	m_music_vol_slider.update(data);
-	m_sound_vol_slider.update(data);
+	m_musicVolSlider.Update(data);
+	m_soundVolSlider.Update(data);
 
-	gAudioSystem->set_music_volume(m_music_vol_slider.value());
+	AudioSystem::SetMusicVolume(m_musicVolSlider.Value());
 
-	if (m_back_btn.is_hovered(data))
+	if (m_backButton.IsHovered(data))
 	{
-		m_back_btn.draw_box = true;
+		m_backButton.drawBox = true;
 	}
 	else
 	{
-		m_back_btn.draw_box = false;
+		m_backButton.drawBox = false;
 	}
 
-	if (m_back_btn.is_pressed(data))
+	if (m_backButton.IsPressed(data))
 	{
-		is_finished = true;
+		isFinished = true;
 	}
 }
 
-void OptionsState::render(GameData &data) const
+void OptionsState::Render(GameData &data) const
 {
-	data.window.draw(m_music_vol_tb);
-	data.window.draw(m_music_vol_slider);
-	data.window.draw(m_sound_vol_tb);
-	data.window.draw(m_sound_vol_slider);
-	data.window.draw(m_back_btn);
+	data.window.draw(m_musicVolTextBox);
+	data.window.draw(m_musicVolSlider);
+	data.window.draw(m_soundVolTextBox);
+	data.window.draw(m_soundVolSlider);
+	data.window.draw(m_backButton);
 }

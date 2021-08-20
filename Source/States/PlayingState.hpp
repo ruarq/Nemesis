@@ -14,9 +14,9 @@ public:
 	using Ptr = std::unique_ptr<PlayingState>;
 
 public:
-	void on_enter(GameData &data) override;
-	void update(GameData &data) override;
-	void render(GameData &data) const override;
+	void OnEnter(GameData &data) override;
+	void Update(GameData &data) override;
+	void Render(GameData &data) const override;
 
 private:
 	Tilemap m_tilemap;

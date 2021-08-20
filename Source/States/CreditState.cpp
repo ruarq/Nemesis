@@ -2,25 +2,25 @@
 
 using namespace std::string_literals;
 
-void CreditState::on_enter(GameData &data)
+void CreditState::OnEnter(GameData &data)
 {
 	// Load the credits font
-	UI::Fonts::change("FreeMono.ttf");
+	UI::Fonts::Change("FreeMono.ttf");
 
 	// play the happy music again
-	gAudioSystem->play_music("happy", true);
+	AudioSystem::PlayMusic("happy", true);
 
 	// needed for the fade later on
-	on_enter_music_volume = gAudioSystem->get_music_volume();
+	m_onEnterMusicVolume = AudioSystem::MusicVolume();
 
 	// set up text box (without text)
-	m_credits.wrapped_text = false;
-	m_credits.text_align = UI::TextAlign::left;
+	m_credits.wrappedText = false;
+	m_credits.textAlign = UI::TextAlign::Left;
 	m_credits.box.width = data.window.getSize().x;
 	m_credits.box.top = data.window.getSize().y;
 
 	// load the Credits.txt file
-	const std::string filename = Data::Other::path("Credits.txt");
+	const std::string filename = Data::Other::Path("Credits.txt");
 	std::ifstream file(filename);
 	std::string line;
 
@@ -36,28 +36,28 @@ void CreditState::on_enter(GameData &data)
 	}
 }
 
-void CreditState::update(GameData &data)
+void CreditState::Update(GameData &data)
 {
-	m_credits.box.top -= scroll_speed * gTime->dt();
+	m_credits.box.top -= scrollSpeed * Time::Dt();
 
-	m_credits.adjust_box_height();
-	if (m_credits.box.top + m_credits.box.height < 0.0f || gInput->any())
+	m_credits.AdjustBoxHeight();
+	if (m_credits.box.top + m_credits.box.height < 0.0f || Input::Any())
 	{
-		is_finished = true;
+		isFinished = true;
 	}
 
 	// fade the music
-	if (m_credits.box.top + m_credits.box.height < music_fade)
+	if (m_credits.box.top + m_credits.box.height < musicFade)
 	{
-		const float volume = ((m_credits.box.top + m_credits.box.height) / music_fade) * on_enter_music_volume;
+		const float volume = ((m_credits.box.top + m_credits.box.height) / musicFade) * m_onEnterMusicVolume;
 		if (volume >= 0.0f && volume <= 100.0f)
 		{
-			gAudioSystem->set_music_volume(volume);
+			AudioSystem::SetMusicVolume(volume);
 		}
 	}
 }
 
-void CreditState::render(GameData &data) const
+void CreditState::Render(GameData &data) const
 {
 	data.window.draw(m_credits);
 }

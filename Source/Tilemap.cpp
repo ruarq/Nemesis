@@ -19,10 +19,10 @@ void Tilemap::Render(sf::RenderWindow &window) const
 	{
 		for (u32 x = 0; x < m_size.x; x++)
 		{
-			const TileId tile_id = m_tiles.at(x + m_size.x * y);
-			if (tile_id != InvalidTileId)
+			const TileId tileId = m_tiles.at(x + m_size.x * y);
+			if (tileId != InvalidTileId)
 			{
-				tileset.Render(window, sf::FloatRect(x * tile_size.x, y * tile_size.y, tile_size.x, tile_size.y), tile_id);
+				tileset.Render(window, sf::FloatRect(x * tileSize.x, y * tileSize.y, tileSize.x, tileSize.y), tileId);
 			}
 		}
 	}

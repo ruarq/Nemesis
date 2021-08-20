@@ -4,8 +4,8 @@
 
 #define _NMS_ADD_SUBDIR(Parentdir, Subdir) \
 	struct Subdir final { \
-		static std::string path(const std::string &local = "") { \
-			return Parentdir::path(std::string(#Subdir"/") + local); \
+		static std::string Path(const std::string &local = "") { \
+			return Parentdir::Path(std::string(#Subdir"/") + local); \
 		} \
 	}
 
@@ -14,7 +14,7 @@
  */
 struct Data final
 {
-	static std::string path(const std::string &local = "")
+	static std::string Path(const std::string &local = "")
 	{
 		return std::string("Data/") + local;
 	}

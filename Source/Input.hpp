@@ -4,35 +4,32 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Singleton.hpp"
 #include "Types.hpp"
-
-#define gInput Singleton<Input>::get()
 
 class Input final
 {
 public:
-	void update();
+	static void Update();
 
-	void handle_key_event(const sf::Event &key_event);
-	bool pressed(const sf::Keyboard::Key key) const;
-	bool down(const sf::Keyboard::Key key) const;
-	bool released(const sf::Keyboard::Key key) const;
+	static void HandleKeyEvent(const sf::Event &keyEvent);
+	static bool Pressed(const sf::Keyboard::Key key);
+	static bool Down(const sf::Keyboard::Key key);
+	static bool Released(const sf::Keyboard::Key key);
 
-	void handle_mouse_event(const sf::Event &mouse_event);
-	bool pressed(const sf::Mouse::Button button) const;
-	bool down(const sf::Mouse::Button button) const;
-	bool released(const sf::Mouse::Button button) const;
+	static void HandleMouseEvent(const sf::Event &mouseEvent);
+	static bool Pressed(const sf::Mouse::Button button);
+	static bool Down(const sf::Mouse::Button button);
+	static bool Released(const sf::Mouse::Button button);
 
 	/**
 	 * @return returns true if any key or button is pressed.
 	 */
-	bool any() const;
+	static bool Any();
 
 private:
-	std::array<bool, sf::Keyboard::KeyCount> m_keys;
-	std::array<bool, sf::Keyboard::KeyCount> m_prev_keys;
+	static std::array<bool, sf::Keyboard::KeyCount> m_keys;
+	static std::array<bool, sf::Keyboard::KeyCount> m_prevKeys;
 
-	std::array<bool, sf::Mouse::ButtonCount> m_buttons;
-	std::array<bool, sf::Mouse::ButtonCount> m_prev_buttons;
+	static std::array<bool, sf::Mouse::ButtonCount> m_buttons;
+	static std::array<bool, sf::Mouse::ButtonCount> m_prevButtons;
 };

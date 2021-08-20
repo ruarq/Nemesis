@@ -8,17 +8,14 @@
 
 #include <SFML/Audio.hpp>
 
-#include "Singleton.hpp"
 #include "Data.hpp"
 #include "Config.hpp"
 
-#define gAudioSystem Singleton<AudioSystem>::get()
+// sf::Music::Ptr
+using sf_Music_Ptr = std::shared_ptr<sf::Music>;
 
 class AudioSystem final
 {
-public:
-	using sfMusicPtr = std::shared_ptr<sf::Music>;
-
 public:
 	AudioSystem();
 	~AudioSystem();
@@ -30,7 +27,7 @@ public:
 	 * @param filename the filename of the music file.
 	 * @return true if loading the music file was successful, false otherwise.
 	 */
-	bool load_music(const std::string &name, const std::string &filename);
+	static bool LoadMusic(const std::string &name, const std::string &filename);
 
 	/**
 	 * @brief play a music file.
@@ -38,16 +35,16 @@ public:
 	 * @param loop wether to play the file in loop or not
 	 * @return true if the music is playing, false it not.
 	 */
-	bool play_music(const std::string &name, const bool loop = false);
+	static bool PlayMusic(const std::string &name, const bool loop = false);
 
-	void set_music_volume(const f32 volume);
-	void set_sound_volume(const f32 volume);
+	static void SetMusicVolume(const f32 volume);
+	static void SetSoundVolume(const f32 volume);
 
-	f32 get_music_volume() const;
-	f32 get_sound_volume() const;
+	static f32 MusicVolume();
+	static f32 SoundVolume();
 
 private:
-	sfMusicPtr m_current_music;
-	std::unordered_map<std::string, sfMusicPtr> m_music_files;
-	f32 m_music_volume = 1.0f, m_sound_volume = 1.0f;
+	static sf_Music_Ptr m_currentMusic;
+	static std::unordered_map<std::string, sf_Music_Ptr> m_musicFiles;
+	static f32 m_musicVolume, m_soundVolume;
 };

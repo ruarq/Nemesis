@@ -2,17 +2,17 @@
 
 #include "MenuState.hpp"
 
-void PlayingState::on_enter(GameData &data)
+void PlayingState::OnEnter(GameData &data)
 {
-	gAudioSystem->play_music("horror", true);
+	AudioSystem::PlayMusic("horror", true);
 	
 	Tileset ts;
-	ts.tile_size = Vec2u(8, 8);
-	ts.LoadFromFile(Data::Images::path("TestTileset.png"));
+	ts.tileSize = Vec2u(8, 8);
+	ts.LoadFromFile(Data::Images::Path("TestTileset.png"));
 
 	m_tilemap.Create(Vec2u(32, 32));
 	m_tilemap.tileset = ts;
-	m_tilemap.tile_size = Vec2f(32.0f, 32.0f);
+	m_tilemap.tileSize = Vec2f(32.0f, 32.0f);
 	
 	for (u32 y = 0; y < m_tilemap.Size().y; y++)
 	{
@@ -23,16 +23,16 @@ void PlayingState::on_enter(GameData &data)
 	}
 }
 
-void PlayingState::update(GameData &data)
+void PlayingState::Update(GameData &data)
 {
-	if (gInput->pressed(sf::Keyboard::Key::Escape))
+	if (Input::Pressed(sf::Keyboard::Key::Escape))
 	{
-		data.state_queue.push(MenuState::Ptr(new MenuState()));
-		is_finished = true;
+		data.states.push(MenuState::Ptr(new MenuState()));
+		isFinished = true;
 	}
 }
 
-void PlayingState::render(GameData &data) const
+void PlayingState::Render(GameData &data) const
 {
 	m_tilemap.Render(data.window);
 }

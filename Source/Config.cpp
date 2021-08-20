@@ -1,61 +1,61 @@
 #include "Config.hpp"
 
-bool Config::load_from_file(const std::string &filename)
+bool Config::LoadFromFile(const std::string &filename)
 {
-	std::ifstream config_file(filename);
+	std::ifstream configFile(filename);
 	std::string attrib, value;
 
-	if (!config_file.is_open())
+	if (!configFile.is_open())
 	{
 		return false;
 	}
 
-	while (!config_file.eof())
+	while (!configFile.eof())
 	{
-		config_file >> attrib >> value;
+		configFile >> attrib >> value;
 		m_attributes.emplace(attrib, value);
 	}
 
 	return true;
 }
 
-bool Config::save_to_file(const std::string &filename) const
+bool Config::SaveToFile(const std::string &filename) const
 {
-	std::ofstream config_file(filename);
+	std::ofstream configFile(filename);
 	
-	if (!config_file.is_open())
+	if (!configFile.is_open())
 	{
 		return false;
 	}
 
 	for (auto &pair : m_attributes)
 	{
-		config_file << pair.first << " " << pair.second << "\n";
+		configFile << pair.first << " " << pair.second << "\n";
 	}
 
 	return true;
 }
 
 template<>
-void Config::set_value(const std::string &attribute, const std::string &value)
+void Config::SetValue(const std::string &attribute, const std::string &value)
 {
 	m_attributes.at(attribute) = value;
 }
 
 template<>
-i32 Config::get_value(const std::string &attribute) const
+i32 Config::GetValue(const std::string &attribute) const
 {
 	return std::stoi(m_attributes.at(attribute));
 }
 
 template<>
-bool Config::get_value(const std::string &attribute) const
+bool Config::GetValue(const std::string &attribute) const
 {
-	return this->get_value<i32>(attribute);
+	return this->GetValue<i32>(attribute);
 }
 
 template<>
-f32 Config::get_value(const std::string &attribute) const
+f32 Config::GetValue(const std::string &attribute) const
 {
 	return std::stof(m_attributes.at(attribute));
 }

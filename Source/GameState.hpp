@@ -13,11 +13,11 @@ public:
 	virtual ~GameState() = default;
 
 public:
-	virtual void on_enter(GameData &data) {}
-	virtual void update(GameData &data) = 0;
-	virtual void render(GameData &data) const = 0;
-	virtual void on_leave(GameData &data) {}
+	virtual void OnEnter(GameData &data) {}
+	virtual void Update(GameData &data) = 0;
+	virtual void Render(GameData &data) const = 0;
+	virtual void OnLeave(GameData &data) {}
 	
 public:
-	bool is_finished = false;
+	bool isFinished = false;
 };

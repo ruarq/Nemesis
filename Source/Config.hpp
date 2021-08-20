@@ -17,14 +17,14 @@ public:
 	 * @param filename the name of the file.
 	 * @return true if reading the file was successful, false otherwise.
 	 */
-	bool load_from_file(const std::string &filename);
+	bool LoadFromFile(const std::string &filename);
 
 	/**
 	 * @brief save the config to a file.
 	 * @param filename the name of the file.
 	 * @return true if saving the config was sucessful, false otherwise.
 	 */
-	bool save_to_file(const std::string &filename) const;
+	bool SaveToFile(const std::string &filename) const;
 
 	/**
 	 * @brief set the value of an attribute.
@@ -34,7 +34,7 @@ public:
 	 * @param to_string function to convert the T value to a string (default std::to_string)
 	 */
 	template<typename T>
-	void set_value(const std::string &attribute, const T &value)
+	void SetValue(const std::string &attribute, const T &value)
 	{
 		m_attributes.at(attribute) = std::to_string(value);
 	}
@@ -46,7 +46,7 @@ public:
 	 * @return the value of the attribute as type T.
 	 */
 	template<typename T>
-	T get_value(const std::string &attribute) const
+	T GetValue(const std::string &attribute) const
 	{
 		return T();
 	}

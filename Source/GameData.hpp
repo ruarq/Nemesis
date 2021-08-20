@@ -10,5 +10,5 @@ struct GameData final
 {
 public:
 	sf::RenderWindow window;
-	std::queue<GameState::Ptr> state_queue;
+	std::queue<GameState::Ptr> states;
 };

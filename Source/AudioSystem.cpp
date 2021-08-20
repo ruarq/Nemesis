@@ -1,72 +1,76 @@
 #include "AudioSystem.hpp"
 
+sf_Music_Ptr AudioSystem::m_currentMusic;
+std::unordered_map<std::string, sf_Music_Ptr> AudioSystem::m_musicFiles;
+f32 AudioSystem::m_musicVolume = 1.0f, AudioSystem::m_soundVolume = 1.0f;
+
 AudioSystem::AudioSystem()
 {
-	Config audio_config;
-	const std::string filename = Data::Config::path("Audio.cfg");
+	Config audioConfig;
+	const std::string filename = Data::Config::Path("Audio.cfg");
 
-	if (!audio_config.load_from_file(filename))
+	if (!audioConfig.LoadFromFile(filename))
 	{
 		std::cout << "[AudioSystem] => Couldn't load \"" << filename << "\": continuing with default values.\n";
 		return;
 	}
 
 	// read the values fromthe config
-	m_music_volume = audio_config.get_value<f32>("music_volume") * 100.0f;
-	m_sound_volume = audio_config.get_value<f32>("sound_volume") * 100.0f;
+	m_musicVolume = audioConfig.GetValue<f32>("music_volume") * 100.0f;
+	m_soundVolume = audioConfig.GetValue<f32>("sound_volume") * 100.0f;
 }
 
 AudioSystem::~AudioSystem()
 {
-	const std::string filename = Data::Config::path("Audio.cfg");
-	std::ofstream config_file(filename);
+	const std::string filename = Data::Config::Path("Audio.cfg");
+	std::ofstream configFile(filename);
 
-	if (!config_file.is_open())
+	if (!configFile.is_open())
 	{
 		std::cout << "[AudioSystem] => Couldn't save attributes to \"" << filename << "\"\n";
 		return;
 	}
 
-	config_file << "music_volume " << (std::round(m_music_volume) / 100.0f) << "\n";
-	config_file << "sound_volume " << (std::round(m_sound_volume) / 100.0f) << "\n";
+	configFile << "music_volume " << (std::round(m_musicVolume) / 100.0f) << "\n";
+	configFile << "sound_volume " << (std::round(m_soundVolume) / 100.0f) << "\n";
 }
 
-bool AudioSystem::load_music(const std::string &name, const std::string &filename)
+bool AudioSystem::LoadMusic(const std::string &name, const std::string &filename)
 {
 	using namespace std::string_literals;
 
-	sfMusicPtr music(new sf::Music());
+	sf_Music_Ptr music(new sf::Music());
 	if (!music->openFromFile(filename))
 	{
 		std::cout << "[AudioSystem] => Couldn't load audio file \""s << filename << "\"\n";
 		return false;
 	}
 
-	m_music_files.emplace(name, std::move(music));
+	m_musicFiles.emplace(name, std::move(music));
 	return true;
 }
 
-bool AudioSystem::play_music(const std::string &name, const bool loop)
+bool AudioSystem::PlayMusic(const std::string &name, const bool loop)
 {
-	if (m_music_files.find(name) != m_music_files.end())
+	if (m_musicFiles.find(name) != m_musicFiles.end())
 	{
-		if (m_current_music)
+		if (m_currentMusic)
 		{
-			m_current_music->stop();
+			m_currentMusic->stop();
 		}
 
 		// if the music is already playing do nothing
-		if (m_music_files.at(name) == m_current_music)
+		if (m_musicFiles.at(name) == m_currentMusic)
 		{
 			// but update the loop
-			m_current_music->setLoop(loop);
+			m_currentMusic->setLoop(loop);
 			return true;
 		}
 
-		m_current_music = m_music_files.at(name);
-		m_current_music->setVolume(m_music_volume);
-		m_current_music->setLoop(loop);
-		m_current_music->play();
+		m_currentMusic = m_musicFiles.at(name);
+		m_currentMusic->setVolume(m_musicVolume);
+		m_currentMusic->setLoop(loop);
+		m_currentMusic->play();
 		return true;
 	}
 	else
@@ -76,27 +80,27 @@ bool AudioSystem::play_music(const std::string &name, const bool loop)
 	}
 }
 
-void AudioSystem::set_music_volume(const f32 volume)
+void AudioSystem::SetMusicVolume(const f32 volume)
 {
-	m_music_volume = volume;
+	m_musicVolume = volume;
 	
-	if (m_current_music)
+	if (m_currentMusic)
 	{
-		m_current_music->setVolume(volume);
+		m_currentMusic->setVolume(volume);
 	}
 }
 
-void AudioSystem::set_sound_volume(const f32 volume)
+void AudioSystem::SetSoundVolume(const f32 volume)
 {
-	m_sound_volume = volume;
+	m_soundVolume = volume;
 }
 
-f32 AudioSystem::get_music_volume() const
+f32 AudioSystem::MusicVolume()
 {
-	return m_music_volume;
+	return m_musicVolume;
 }
 
-f32 AudioSystem::get_sound_volume() const
+f32 AudioSystem::SoundVolume()
 {
-	return m_sound_volume;
+	return m_soundVolume;
 }

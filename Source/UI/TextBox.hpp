@@ -17,7 +17,7 @@ class TextBox : public sf::Drawable
 {
 public:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const final override;
-	void adjust_box_height();
+	void AdjustBoxHeight();
 
 public:
 	/**
@@ -33,31 +33,31 @@ public:
 	/**
 	 * @brief wether to draw the box rect or not.
 	 */
-	bool draw_box = false;
+	bool drawBox = false;
 
 	/**
 	 * @brief how the text should be aligned horizontally.
 	 */
-	TextAlign text_align;
+	TextAlign textAlign;
 
 	/**
 	 * @brief if the text should be force to be in the box rect.
 	 */
-	bool wrapped_text = true;
+	bool wrappedText = true;
 
 	/**
 	 * @brief font size
 	 */
-	float font_size = 30.0f;
+	float fontSize = 30.0f;
 
 private:
 	/**
 	 * @brief this is responsible to make the TextBox::text fit into the TextBox::box when it's rendered.
 	 */
-	std::string wrap_text() const;
+	std::string WrapText() const;
 
 private:
-	mutable sf::Text m_sf_text;
+	mutable sf::Text m_sfText;
 };
 
 }

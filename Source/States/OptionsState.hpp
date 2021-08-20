@@ -15,14 +15,14 @@ public:
 	using Ptr = std::unique_ptr<OptionsState>;
 
 public:
-	void on_enter(GameData &data) override;
-	void update(GameData &data) override;
-	void render(GameData &data) const override;
+	void OnEnter(GameData &data) override;
+	void Update(GameData &data) override;
+	void Render(GameData &data) const override;
 
 private:
-	UI::TextBox m_music_vol_tb;
-	UI::Slider m_music_vol_slider;
-	UI::TextBox m_sound_vol_tb;
-	UI::Slider m_sound_vol_slider;
-	UI::Button m_back_btn;
+	UI::TextBox m_musicVolTextBox;
+	UI::Slider m_musicVolSlider;
+	UI::TextBox m_soundVolTextBox;
+	UI::Slider m_soundVolSlider;
+	UI::Button m_backButton;
 };

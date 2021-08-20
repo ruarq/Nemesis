@@ -13,8 +13,8 @@ namespace UI
 class Button final : public TextBox
 {
 public:
-	bool is_hovered(const GameData &data) const;
-	bool is_pressed(const GameData &data) const;
+	bool IsHovered(const GameData &data) const;
+	bool IsPressed(const GameData &data) const;
 };
 
 }

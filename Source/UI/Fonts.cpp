@@ -3,19 +3,19 @@
 namespace UI
 {
 
-sf::Font Fonts::current_font;
+sf::Font Fonts::currentFont;
 
-bool Fonts::change(const std::string &font_name)
+bool Fonts::Change(const std::string &fontName)
 {
-	sf::Font new_font;
+	sf::Font newFont;
 
-	if (!new_font.loadFromFile(Data::Fonts::path(font_name)))
+	if (!newFont.loadFromFile(Data::Fonts::Path(fontName)))
 	{
-		std::cout << "[UI::Fonts] => Couldn't load font \"" << font_name << "\"\n";
+		std::cout << "[UI::Fonts] => Couldn't load font \"" << fontName << "\"\n";
 		return false;
 	}
 
-	current_font = new_font;
+	currentFont = newFont;
 	return true;
 }
 

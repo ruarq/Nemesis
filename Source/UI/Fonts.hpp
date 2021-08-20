@@ -17,13 +17,13 @@ class Fonts final
 public:
 	/**
 	 * @brief change the global ui font.
-	 * @param font_name font file name, only the filename. the function will search in Data::Fonts::path() for that file.
+	 * @param fontName font file name, only the filename. the function will search in Data::Fonts::Path() for that file.
 	 * @return true if the font was changed successfully
 	 */
-	static bool change(const std::string &font_name);
+	static bool Change(const std::string &fontName);
 
 public:
-	static sf::Font current_font;
+	static sf::Font currentFont;
 };
 
 }

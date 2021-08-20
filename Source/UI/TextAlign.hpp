@@ -5,7 +5,7 @@ namespace UI
 
 enum class TextAlign
 {
-	left, centered, right
+	Left, Centered, Right
 };
 
 }

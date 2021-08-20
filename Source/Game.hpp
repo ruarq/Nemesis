@@ -13,17 +13,16 @@
 #include "Time.hpp"
 #include "AudioSystem.hpp"
 #include "Input.hpp"
-#include "Singleton.hpp"
 
 class Game final
 {
 public:
-	void run();
+	void Run();
 
 private:
-	void create_window();
-	void load_data();
-	void handle_events();
+	void CreateWindow();
+	void LoadData();
+	void HandleEvents();
 
 public:
 	GameData data;
