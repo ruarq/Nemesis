@@ -1,5 +1,10 @@
 #pragma once
 
+#include <string>
+#include <fstream>
+
+#include <SFML/Graphics.hpp>
+
 #include "Types.hpp"
 #include "Tileset.hpp"
 #include "Vec2.hpp"
@@ -11,6 +16,7 @@ public:
 	void SetTile(const Vec2u &pos, const TileId tileId);
 	void Render(sf::RenderWindow &window) const;
 	Vec2u Size() const;
+	bool LoadFromFile(const std::string &filename);
 
 public:
 	/**

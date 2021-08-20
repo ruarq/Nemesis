@@ -35,3 +35,29 @@ Vec2u Tilemap::Size() const
 {
 	return m_size;
 }
+
+bool Tilemap::LoadFromFile(const std::string &filename)
+{
+	std::ifstream file(filename);
+	
+	if (!file.is_open())
+	{
+		std::cout << "[Tilemap] => Couldn't load \"" << filename << "\"\n";
+		return false;
+	}
+	
+	file >> m_size;
+	this->Create(m_size);
+
+	for (u32 y = 0; y < m_size.y; y++)
+	{
+		for (u32 x = 0; x < m_size.x; x++)
+		{
+			TileId tileId;
+			file >> tileId;
+			m_tiles.at(y * m_size.x + x) = tileId;
+		}
+	}
+
+	return true;
+}
