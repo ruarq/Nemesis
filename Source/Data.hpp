@@ -24,5 +24,5 @@ struct Data final
 	_NMS_ADD_SUBDIR(Data, Fonts);
 	_NMS_ADD_SUBDIR(Data, Images);
 	_NMS_ADD_SUBDIR(Data, Other);
-	_NMS_ADD_SUBDIR(Data, Rooms);
+	_NMS_ADD_SUBDIR(Data, Maps);
 };
