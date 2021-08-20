@@ -28,13 +28,6 @@ public:
 	}
 
 public:
-	Vec2<T>& operator=(const Vec2<T> &other)
-	{
-		x = other.x;
-		y = other.y;
-		return *this;
-	}
-
 	operator sf::Vector2<T>() const
 	{
 		return sf::Vector2<T>(x, y);
