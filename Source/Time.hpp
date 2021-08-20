@@ -7,7 +7,14 @@
 class Time final
 {
 public:
+	/**
+	 * @brief update the delta time
+	 */
 	static void Update();
+
+	/**
+	 * @brief get the delta time
+	 */
 	static f32 Dt();
 
 private:

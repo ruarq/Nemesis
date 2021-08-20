@@ -12,10 +12,39 @@
 class Tilemap final
 {
 public:
+	/**
+	 * @brief create a tilemap
+	 * @param size the size of the tilemap (in tiles, not pixels)
+	 */
 	void Create(const Vec2u &size);
+
+	/**
+	 * @brief set the tiledId of a tile in the tilemap
+	 * @param pos the position of the tile
+	 * @param tileId the id of the tile
+	 */
 	void SetTile(const Vec2u &pos, const TileId tileId);
+
+	/**
+	 * @brief render the tilemap
+	 * @param window the window to render the tilemap onto
+	 */
 	void Render(sf::RenderWindow &window) const;
+
+	/**
+	 * @brief get the size of the tilemap in *tiles*
+	 */
 	Vec2u Size() const;
+
+	/**
+	 * @brief get the size of the tilemap in *pixels*
+	 */
+	Vec2f RealSize() const;
+
+	/**
+	 * @brief load a tilemap from a file
+	 * @param filename the file to load the tilemap from
+	 */
 	bool LoadFromFile(const std::string &filename);
 
 public:
