@@ -2,15 +2,16 @@
 
 TileId InvalidTileId = std::numeric_limits<TileId>::max();
 
-bool ValidateTileSize(const Vec2u &tilemap_size, const Vec2u &tile_size)
+bool ValidateTileSize(const Vec2u &tilemapSize, const Vec2u &tileSize)
 {
-	if (tilemap_size.x == 0 || tilemap_size.y == 0 ||
-		tile_size.x == 0 || tile_size.y == 0)
+	// TODO(ruarq): explain what this shit is.
+	if (tilemapSize.x == 0 || tilemapSize.y == 0 ||
+		tileSize.x == 0 || tileSize.y == 0)
 	{
 		return false;
 	}
 
-	return tilemap_size.x % tile_size.x == 0 && tilemap_size.y % tile_size.y == 0;
+	return tilemapSize.x % tileSize.x == 0 && tilemapSize.y % tileSize.y == 0;
 }
 
 bool Tileset::LoadFromFile(const std::string &filename)

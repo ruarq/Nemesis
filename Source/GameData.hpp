@@ -10,5 +10,6 @@ struct GameData final
 {
 public:
 	sf::RenderWindow window;
+	sf::View camera;
 	std::queue<GameState::Ptr> states;
 };
