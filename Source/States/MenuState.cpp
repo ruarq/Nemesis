@@ -41,14 +41,14 @@ void MenuState::Update()
 	}
 }
 
-void MenuState::Render(sf::RenderWindow &window) const
+void MenuState::Render() const
 {
 	UI::BeginRender();
-	window.draw(m_title);
+	game->window.draw(m_title);
 	
 	for (const UI::Button &button : m_buttons)
 	{
-		window.draw(button);
+		game->window.draw(button);
 	}
 	UI::EndRender();
 }

@@ -57,7 +57,7 @@ void Game::Run()
 		currentState->Update();
 		
 		// render state
-		currentState->Render(window);
+		currentState->Render();
 	
 		window.display();
 	}

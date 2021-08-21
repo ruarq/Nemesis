@@ -43,14 +43,14 @@ void OptionsState::Update()
 	}
 }
 
-void OptionsState::Render(sf::RenderWindow &window) const
+void OptionsState::Render() const
 {
 	UI::BeginRender();
-	window.draw(m_musicVolTextBox);
-	window.draw(m_musicVolSlider);
-	window.draw(m_soundVolTextBox);
-	window.draw(m_soundVolSlider);
-	window.draw(m_backButton);
+	game->window.draw(m_musicVolTextBox);
+	game->window.draw(m_musicVolSlider);
+	game->window.draw(m_soundVolTextBox);
+	game->window.draw(m_soundVolSlider);
+	game->window.draw(m_backButton);
 	UI::EndRender();
 }
 

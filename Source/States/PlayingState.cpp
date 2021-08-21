@@ -27,9 +27,9 @@ void PlayingState::Update()
 {
 }
 
-void PlayingState::Render(sf::RenderWindow &window) const
+void PlayingState::Render() const
 {
-	m_tilemap.Render(window);
+	m_tilemap.Render(game->window);
 }
 
 GameState::Ptr PlayingState::NextState()

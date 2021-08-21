@@ -17,8 +17,7 @@ public:
 public:
 	virtual void OnEnter() {}
 	virtual void Update() = 0;
-	// TODO(ruarq): remove window parameter since it's already accessible through GameState::game->window
-	virtual void Render(sf::RenderWindow &window) const = 0;
+	virtual void Render() const = 0;
 	virtual void OnExit() {}
 
 	virtual GameState::Ptr NextState() = 0;

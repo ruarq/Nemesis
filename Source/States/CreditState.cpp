@@ -57,10 +57,10 @@ void CreditState::Update()
 	}
 }
 
-void CreditState::Render(sf::RenderWindow &window) const
+void CreditState::Render() const
 {
 	UI::BeginRender();
-	window.draw(m_credits);
+	game->window.draw(m_credits);
 	UI::EndRender();
 }
 

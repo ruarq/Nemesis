@@ -17,7 +17,7 @@ public:
 public:
 	void OnEnter() override;
 	void Update() override;
-	void Render(sf::RenderWindow &window) const override;
+	void Render() const override;
 
 	GameState::Ptr NextState() override;
 
