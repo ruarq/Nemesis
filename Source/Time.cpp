@@ -1,14 +1,14 @@
 #include "Time.hpp"
 
-sf::Clock Time::m_clock;
-f32 Time::m_dt;
+sf::Clock Time::clock;
+f32 Time::dt;
 
 void Time::Update()
 {
-	m_dt = m_clock.restart().asSeconds();
+	dt = clock.restart().asSeconds();
 }
 
 f32 Time::Dt()
 {
-	return m_dt;
+	return dt;
 }
