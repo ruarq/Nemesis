@@ -8,13 +8,13 @@ void CreditState::OnEnter()
 	Audio::PlayMusic("happy", true);
 
 	// needed for the fade later on
-	m_onEnterMusicVolume = Audio::MusicVolume();
+	onEnterMusicVolume = Audio::MusicVolume();
 
 	// set up text box (without text)
-	m_credits.wrappedText = false;
-	m_credits.textAlign = UI::TextAlign::Left;
-	m_credits.box.width = game->window.getSize().x;
-	m_credits.box.top = game->window.getSize().y;
+	credits.wrappedText = false;
+	credits.textAlign = UI::TextAlign::Left;
+	credits.box.width = game->window.getSize().x;
+	credits.box.top = game->window.getSize().y;
 
 	// load the Credits.txt file
 	const std::string filename = Data::Other::Path("Credits.txt");
@@ -23,30 +23,30 @@ void CreditState::OnEnter()
 
 	if (!file.is_open())
 	{
-		m_credits.text = "[CreditState] => Couldn't open \""s + filename + "\""s;
+		credits.text = "[CreditState] => Couldn't open \""s + filename + "\""s;
 		return;
 	}
 
 	while (std::getline(file, line))
 	{
-		m_credits.text += line + "\n";
+		credits.text += line + "\n";
 	}
 }
 
 void CreditState::Update()
 {
-	m_credits.box.top -= scrollSpeed * Time::Dt();
+	credits.box.top -= scrollSpeed * Time::Dt();
 
-	m_credits.AdjustBoxHeight();
-	if (m_credits.box.top + m_credits.box.height < 0.0f || Input::Any())
+	credits.AdjustBoxHeight();
+	if (credits.box.top + credits.box.height < 0.0f || Input::Any())
 	{
 		game->isRunning = false;
 	}
 
 	// fade the music
-	if (m_credits.box.top + m_credits.box.height < musicFade)
+	if (credits.box.top + credits.box.height < musicFade)
 	{
-		const float volume = ((m_credits.box.top + m_credits.box.height) / musicFade) * m_onEnterMusicVolume;
+		const float volume = ((credits.box.top + credits.box.height) / musicFade) * onEnterMusicVolume;
 		if (volume >= 0.0f && volume <= 100.0f)
 		{
 			Audio::SetMusicVolume(volume);
@@ -57,7 +57,7 @@ void CreditState::Update()
 void CreditState::Render() const
 {
 	UI::BeginRender();
-	game->window.draw(m_credits);
+	game->window.draw(credits);
 	UI::EndRender();
 }
 

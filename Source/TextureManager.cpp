@@ -1,6 +1,6 @@
 #include "TextureManager.hpp"
 
-std::unordered_map<std::string, sf::Texture> TextureManager::m_textures;
+std::unordered_map<std::string, sf::Texture> TextureManager::textures;
 
 sf::Texture* TextureManager::LoadTexture(const std::string &filename)
 {
@@ -11,7 +11,7 @@ sf::Texture* TextureManager::LoadTexture(const std::string &filename)
 		return nullptr;
 	}
 
-	const auto &[itr, emplace_success] = m_textures.emplace(filename, texture);
+	const auto &[itr, emplace_success] = textures.emplace(filename, texture);
 
 	if (!emplace_success)
 	{

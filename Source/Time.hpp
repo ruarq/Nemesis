@@ -18,6 +18,6 @@ public:
 	static f32 Dt();
 
 private:
-	static sf::Clock m_clock;
-	static f32 m_dt;
+	static sf::Clock clock;
+	static f32 dt;
 };

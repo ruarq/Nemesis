@@ -57,7 +57,7 @@ private:
 	std::string WrapText() const;
 
 private:
-	mutable sf::Text m_sfText;
+	mutable sf::Text sfText;
 };
 
 }

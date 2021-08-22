@@ -22,9 +22,9 @@ public:
 	GameState::Ptr NextState() override;
 
 private:
-	UI::TextBox m_musicVolTextBox;
-	UI::Slider m_musicVolSlider;
-	UI::TextBox m_soundVolTextBox;
-	UI::Slider m_soundVolSlider;
-	UI::Button m_backButton;
+	UI::TextBox musicVolTextBox;
+	UI::Slider musicVolSlider;
+	UI::TextBox soundVolTextBox;
+	UI::Slider soundVolSlider;
+	UI::Button backButton;
 };

@@ -2,15 +2,15 @@
 
 void Tilemap::Create(const Vec2u &size)
 {
-	m_size = size;
-	m_tiles.resize(size.x * size.y);
-	std::fill(m_tiles.begin(), m_tiles.end(), INVALID_TILE_ID);
+	this->size = size;
+	tiles.resize(size.x * size.y);
+	std::fill(tiles.begin(), tiles.end(), INVALID_TILE_ID);
 }
 
 
 void Tilemap::SetTile(const Vec2u &pos, const TileId tile_id)
 {
-	m_tiles.at(pos.x + m_size.x * pos.y) = tile_id;
+	tiles.at(pos.x + size.x * pos.y) = tile_id;
 }
 
 void Tilemap::Render(sf::RenderWindow &window) const
@@ -18,11 +18,11 @@ void Tilemap::Render(sf::RenderWindow &window) const
 	/**
 	 * render every tile in the tilemap
 	 */
-	for (u32 y = 0; y < m_size.y; y++)
+	for (u32 y = 0; y < size.y; y++)
 	{
-		for (u32 x = 0; x < m_size.x; x++)
+		for (u32 x = 0; x < size.x; x++)
 		{
-			const TileId tileId = m_tiles.at(x + m_size.x * y);
+			const TileId tileId = tiles.at(x + size.x * y);
 			if (tileId != INVALID_TILE_ID)
 			{
 				tileset.Render(window, sf::FloatRect(x * tileSize.x + offset.x, y * tileSize.y + offset.y, tileSize.x, tileSize.y), tileId);
@@ -33,7 +33,7 @@ void Tilemap::Render(sf::RenderWindow &window) const
 
 Vec2u Tilemap::Size() const
 {
-	return m_size;
+	return size;
 }
 
 bool Tilemap::LoadFromFile(const std::string &filename)
@@ -46,16 +46,16 @@ bool Tilemap::LoadFromFile(const std::string &filename)
 		return false;
 	}
 	
-	file >> m_size;
-	this->Create(m_size);
+	file >> size;
+	this->Create(size);
 
-	for (u32 y = 0; y < m_size.y; y++)
+	for (u32 y = 0; y < size.y; y++)
 	{
-		for (u32 x = 0; x < m_size.x; x++)
+		for (u32 x = 0; x < size.x; x++)
 		{
 			TileId tileId;
 			file >> tileId;
-			m_tiles.at(y * m_size.x + x) = tileId;
+			tiles.at(y * size.x + x) = tileId;
 		}
 	}
 

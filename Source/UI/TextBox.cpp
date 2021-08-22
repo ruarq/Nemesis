@@ -5,35 +5,35 @@ namespace UI
 
 void TextBox::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-	m_sfText.setFont(Fonts::currentFont);
-	m_sfText.setCharacterSize(int(fontSize));
+	sfText.setFont(Fonts::currentFont);
+	sfText.setCharacterSize(int(fontSize));
 
 	if (wrappedText)
 	{
-		m_sfText.setString(this->WrapText());
+		sfText.setString(this->WrapText());
 	}
 	else
 	{
-		m_sfText.setString(text);
+		sfText.setString(text);
 	}
 
 	switch (textAlign)
 	{
 		case TextAlign::Left:
-			m_sfText.setPosition(box.left, box.top);
+			sfText.setPosition(box.left, box.top);
 			break;
 
 		case TextAlign::Centered:
-			m_sfText.setPosition(box.left + box.width / 2.0f - m_sfText.getLocalBounds().width / 2.0f, box.top);
+			sfText.setPosition(box.left + box.width / 2.0f - sfText.getLocalBounds().width / 2.0f, box.top);
 			break;
 
 		case TextAlign::Right:
-			m_sfText.setPosition(box.left + box.width - m_sfText.getLocalBounds().width, box.top);
+			sfText.setPosition(box.left + box.width - sfText.getLocalBounds().width, box.top);
 			break;
 	}
 
 	// draw the text and the box
-	target.draw(m_sfText);
+	target.draw(sfText);
 	if (drawBox)
 	{
 		sf::RectangleShape shape;
@@ -47,18 +47,18 @@ void TextBox::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 void TextBox::AdjustBoxHeight()
 {
-	m_sfText.setString(this->WrapText());
-	box.height = m_sfText.getLocalBounds().height;
+	sfText.setString(this->WrapText());
+	box.height = sfText.getLocalBounds().height;
 }
 
 std::string TextBox::WrapText() const
 {
 	// update the local bounds, so we can use them in the calculation below.
-	m_sfText.setString(text);
+	sfText.setString(text);
 
 	// calculate where to insert newlines
 	std::string wrappedString = text;
-	const f32 boxToBoundsRatio = box.width / m_sfText.getLocalBounds().width;
+	const f32 boxToBoundsRatio = box.width / sfText.getLocalBounds().width;
 	const u32 insertNewlineStep = boxToBoundsRatio * text.size();
 
 	if (insertNewlineStep == 0)

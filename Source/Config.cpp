@@ -14,7 +14,7 @@ bool Config::LoadFromFile(const std::string &filename)
 	while (!configFile.eof())
 	{
 		configFile >> attrib >> value;
-		m_attributes.emplace(attrib, value);
+		attributes.emplace(attrib, value);
 	}
 
 	return true;
@@ -30,7 +30,7 @@ bool Config::SaveToFile(const std::string &filename) const
 		return false;
 	}
 
-	for (auto &pair : m_attributes)
+	for (auto &pair : attributes)
 	{
 		configFile << pair.first << " " << pair.second << "\n";
 	}
@@ -41,13 +41,13 @@ bool Config::SaveToFile(const std::string &filename) const
 template<>
 void Config::SetValue(const std::string &attribute, const std::string &value)
 {
-	m_attributes.at(attribute) = value;
+	attributes.at(attribute) = value;
 }
 
 template<>
 i32 Config::GetValue(const std::string &attribute) const
 {
-	return std::stoi(m_attributes.at(attribute));
+	return std::stoi(attributes.at(attribute));
 }
 
 template<>
@@ -59,5 +59,5 @@ bool Config::GetValue(const std::string &attribute) const
 template<>
 f32 Config::GetValue(const std::string &attribute) const
 {
-	return std::stof(m_attributes.at(attribute));
+	return std::stof(attributes.at(attribute));
 }

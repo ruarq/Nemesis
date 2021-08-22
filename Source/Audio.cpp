@@ -1,8 +1,8 @@
 #include "Audio.hpp"
 
-sf_Music_Ptr Audio::m_currentMusic;
-std::unordered_map<std::string, sf_Music_Ptr> Audio::m_musicFiles;
-f32 Audio::m_musicVolume = 100.0f, Audio::m_soundVolume = 100.0f;
+sf_Music_Ptr Audio::currentMusic;
+std::unordered_map<std::string, sf_Music_Ptr> Audio::musicFiles;
+f32 Audio::musicVolume = 100.0f, Audio::soundVolume = 100.0f;
 
 void Audio::Init()
 {
@@ -15,8 +15,8 @@ void Audio::Init()
 	}
 
 	// read the values from the config
-	m_musicVolume = audioConfig.GetValue<f32>("music_volume") * 100.0f;
-	m_soundVolume = audioConfig.GetValue<f32>("sound_volume") * 100.0f;
+	musicVolume = audioConfig.GetValue<f32>("music_volume") * 100.0f;
+	soundVolume = audioConfig.GetValue<f32>("sound_volume") * 100.0f;
 }
 
 void Audio::Shutdown()
@@ -30,8 +30,8 @@ void Audio::Shutdown()
 		return;
 	}
 
-	configFile << "music_volume " << (std::round(m_musicVolume) / 100.0f) << "\n";
-	configFile << "sound_volume " << (std::round(m_soundVolume) / 100.0f) << "\n";
+	configFile << "music_volume " << (std::round(musicVolume) / 100.0f) << "\n";
+	configFile << "sound_volume " << (std::round(soundVolume) / 100.0f) << "\n";
 }
 
 bool Audio::LoadMusic(const std::string &name, const std::string &filename)
@@ -45,31 +45,31 @@ bool Audio::LoadMusic(const std::string &name, const std::string &filename)
 		return false;
 	}
 
-	m_musicFiles.emplace(name, std::move(music));
+	musicFiles.emplace(name, std::move(music));
 	return true;
 }
 
 bool Audio::PlayMusic(const std::string &name, const bool loop)
 {
-	if (m_musicFiles.find(name) != m_musicFiles.end())
+	if (musicFiles.find(name) != musicFiles.end())
 	{
 		// if the music is already playing do nothing
-		if (m_musicFiles.at(name) == m_currentMusic)
+		if (musicFiles.at(name) == currentMusic)
 		{
 			// but update the loop
-			m_currentMusic->setLoop(loop);
+			currentMusic->setLoop(loop);
 			return true;
 		}
 
-		if (m_currentMusic)
+		if (currentMusic)
 		{
-			m_currentMusic->stop();
+			currentMusic->stop();
 		}
 
-		m_currentMusic = m_musicFiles.at(name);
-		m_currentMusic->setVolume(m_musicVolume);
-		m_currentMusic->setLoop(loop);
-		m_currentMusic->play();
+		currentMusic = musicFiles.at(name);
+		currentMusic->setVolume(musicVolume);
+		currentMusic->setLoop(loop);
+		currentMusic->play();
 		return true;
 	}
 	else
@@ -81,25 +81,25 @@ bool Audio::PlayMusic(const std::string &name, const bool loop)
 
 void Audio::SetMusicVolume(const f32 volume)
 {
-	m_musicVolume = volume;
+	musicVolume = volume;
 	
-	if (m_currentMusic)
+	if (currentMusic)
 	{
-		m_currentMusic->setVolume(volume);
+		currentMusic->setVolume(volume);
 	}
 }
 
 void Audio::SetSoundVolume(const f32 volume)
 {
-	m_soundVolume = volume;
+	soundVolume = volume;
 }
 
 f32 Audio::MusicVolume()
 {
-	return m_musicVolume;
+	return musicVolume;
 }
 
 f32 Audio::SoundVolume()
 {
-	return m_soundVolume;
+	return soundVolume;
 }

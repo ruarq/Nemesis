@@ -7,5 +7,10 @@
 class World final
 {
 public:
+	void Update();
+
+
+
+private:
 	std::vector<Entity::Ptr> entities;
 };

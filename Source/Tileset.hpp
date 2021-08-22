@@ -8,8 +8,8 @@
 #include "Vec2.hpp"
 #include "TextureManager.hpp"
 
-using TileId = u32;
-extern TileId INVALID_TILE_ID;
+using TileId = i32;
+extern constexpr TileId INVALID_TILE_ID = -1;
 
 class Tileset final
 {
@@ -46,6 +46,6 @@ public:
 	Vec2u tileSize;
 
 private:
-	sf::Texture *m_tileset;
-	Vec2u m_numTiles;
+	sf::Texture *tileset;
+	Vec2u numTiles;
 };

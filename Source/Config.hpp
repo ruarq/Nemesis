@@ -37,7 +37,7 @@ public:
 	template<typename T>
 	void SetValue(const std::string &attribute, const T &value)
 	{
-		m_attributes.at(attribute) = std::to_string(value);
+		attributes.at(attribute) = std::to_string(value);
 	}
 
 	/**
@@ -53,5 +53,5 @@ public:
 	}
 
 private:
-	std::unordered_map<std::string, std::string> m_attributes;
+	std::unordered_map<std::string, std::string> attributes;
 };

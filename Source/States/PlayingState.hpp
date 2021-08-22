@@ -21,6 +21,6 @@ public:
 	GameState::Ptr NextState() override;
 
 private:
-	Tilemap m_tilemap;
-	f32 m_current_tile = 0.0f;
+	Tilemap tilemap;
+	f32 currentTile = 0.0f;
 };

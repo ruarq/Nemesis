@@ -60,9 +60,9 @@ public:
 	static bool Any();
 
 private:
-	static std::array<bool, sf::Keyboard::KeyCount> m_keys;
-	static std::array<bool, sf::Keyboard::KeyCount> m_prevKeys;
+	static std::array<bool, sf::Keyboard::KeyCount> keys;
+	static std::array<bool, sf::Keyboard::KeyCount> prevKeys;
 
-	static std::array<bool, sf::Mouse::ButtonCount> m_buttons;
-	static std::array<bool, sf::Mouse::ButtonCount> m_prevButtons;
+	static std::array<bool, sf::Mouse::ButtonCount> buttons;
+	static std::array<bool, sf::Mouse::ButtonCount> prevButtons;
 };

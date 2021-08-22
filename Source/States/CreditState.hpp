@@ -30,6 +30,6 @@ public:
 	GameState::Ptr NextState() override;
 
 private:
-	UI::TextBox m_credits;
-	f32 m_onEnterMusicVolume;
+	UI::TextBox credits;
+	f32 onEnterMusicVolume;
 };

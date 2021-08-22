@@ -24,8 +24,8 @@ public:
 	f32 maxValue = 1.0f;
 
 private:
-	const f32 m_normalMin = 0.0f, m_normalMax = 1.0f;
-	f32 m_value = 1.0f;
+	const f32 normalMin = 0.0f, normalMax = 1.0f;
+	f32 value = 1.0f;
 };
 
 }

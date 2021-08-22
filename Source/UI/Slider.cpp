@@ -11,15 +11,15 @@ void Slider::Update()
 	collisionRect.top -= collisionRect.height / 2.0f;
 	if (Input::Down(sf::Mouse::Button::Left) && collisionRect.contains(mousePos))
 	{
-		m_value = (mousePos.x - rect.left) / rect.width;
+		value = (mousePos.x - rect.left) / rect.width;
 		
-		if (m_value > m_normalMax)
+		if (value > normalMax)
 		{
-			m_value = m_normalMax;
+			value = normalMax;
 		}
-		else if (m_value < m_normalMin)
+		else if (value < normalMin)
 		{
-			m_value = m_normalMin;
+			value = normalMin;
 		}
 	}
 }
@@ -33,7 +33,7 @@ void Slider::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 	sf::CircleShape button;
 	button.setRadius(rect.height);
-	button.setPosition(rect.left + m_value * rect.width, rect.top);
+	button.setPosition(rect.left + value * rect.width, rect.top);
 	button.setOrigin(button.getRadius(), button.getRadius());
 
 	target.draw(slider);
@@ -42,12 +42,12 @@ void Slider::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 float Slider::Value() const
 {
-	return (maxValue - minValue) * m_value + minValue;
+	return (maxValue - minValue) * value + minValue;
 }
 
 void Slider::SetValue(const f32 value)
 {
-	m_value = (value - minValue) / (maxValue - minValue);
+	this->value = (value - minValue) / (maxValue - minValue);
 }
 
 }

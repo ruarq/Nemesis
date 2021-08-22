@@ -8,27 +8,27 @@ void MenuState::OnEnter()
 {
 	Audio::PlayMusic("happy", true);
 
-	m_title.text = "NEMESIS";
-	m_title.box = UI::Pos::Centered(Vec2f(200.0f, 50.0f), Vec2f(0.0f, -120.0f));
-	m_title.textAlign = UI::TextAlign::Centered;
+	title.text = "NEMESIS";
+	title.box = UI::Pos::Centered(Vec2f(200.0f, 50.0f), Vec2f(0.0f, -120.0f));
+	title.textAlign = UI::TextAlign::Centered;
 
-	m_buttons[MENUSTATE_PLAY_BTN].text = "PLAY";
-	m_buttons[MENUSTATE_PLAY_BTN].box = UI::Pos::Centered(Vec2f(200.0f, 50.0f), Vec2f(0.0f, -60.0f));
-	m_buttons[MENUSTATE_PLAY_BTN].textAlign = UI::TextAlign::Centered;
+	buttons[MENUSTATE_PLAY_BTN].text = "PLAY";
+	buttons[MENUSTATE_PLAY_BTN].box = UI::Pos::Centered(Vec2f(200.0f, 50.0f), Vec2f(0.0f, -60.0f));
+	buttons[MENUSTATE_PLAY_BTN].textAlign = UI::TextAlign::Centered;
 
-	m_buttons[MENUSTATE_OPTIONS_BTN].text = "OPTIONS";
-	m_buttons[MENUSTATE_OPTIONS_BTN].box = UI::Pos::Centered(Vec2f(200.0f, 50.0f));
-	m_buttons[MENUSTATE_OPTIONS_BTN].textAlign = UI::TextAlign::Centered;
+	buttons[MENUSTATE_OPTIONS_BTN].text = "OPTIONS";
+	buttons[MENUSTATE_OPTIONS_BTN].box = UI::Pos::Centered(Vec2f(200.0f, 50.0f));
+	buttons[MENUSTATE_OPTIONS_BTN].textAlign = UI::TextAlign::Centered;
 
-	m_buttons[MENUSTATE_QUIT_BTN].text = "QUIT";
-	m_buttons[MENUSTATE_QUIT_BTN].box = UI::Pos::Centered(Vec2f(200.0f, 50.0f), Vec2f(0.0f, 60.0f));
-	m_buttons[MENUSTATE_QUIT_BTN].textAlign = UI::TextAlign::Centered;
+	buttons[MENUSTATE_QUIT_BTN].text = "QUIT";
+	buttons[MENUSTATE_QUIT_BTN].box = UI::Pos::Centered(Vec2f(200.0f, 50.0f), Vec2f(0.0f, 60.0f));
+	buttons[MENUSTATE_QUIT_BTN].textAlign = UI::TextAlign::Centered;
 }
 
 void MenuState::Update()
 {
 	// draw box around hovered button
-	for (UI::Button &button : m_buttons)
+	for (UI::Button &button : buttons)
 	{
 		if (button.IsHovered())
 		{
@@ -44,9 +44,9 @@ void MenuState::Update()
 void MenuState::Render() const
 {
 	UI::BeginRender();
-	game->window.draw(m_title);
+	game->window.draw(title);
 	
-	for (const UI::Button &button : m_buttons)
+	for (const UI::Button &button : buttons)
 	{
 		game->window.draw(button);
 	}
@@ -55,15 +55,15 @@ void MenuState::Render() const
 
 GameState::Ptr MenuState::NextState()
 {
-	if (m_buttons[MENUSTATE_PLAY_BTN].IsPressed())
+	if (buttons[MENUSTATE_PLAY_BTN].IsPressed())
 	{
 		return GameState::Ptr(new PlayingState());
 	}
-	else if (m_buttons[MENUSTATE_OPTIONS_BTN].IsPressed())
+	else if (buttons[MENUSTATE_OPTIONS_BTN].IsPressed())
 	{
 		return GameState::Ptr(new OptionsState());
 	}
-	else if (m_buttons[MENUSTATE_QUIT_BTN].IsPressed())
+	else if (buttons[MENUSTATE_QUIT_BTN].IsPressed())
 	{
 		return GameState::Ptr(new CreditState());
 	}

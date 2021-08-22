@@ -64,6 +64,6 @@ public:
 	Tileset tileset;
 
 private:
-	std::vector<TileId> m_tiles;
-	Vec2u m_size;
+	std::vector<TileId> tiles;
+	Vec2u size;
 };

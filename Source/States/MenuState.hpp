@@ -26,7 +26,7 @@ public:
 
 	GameState::Ptr NextState() override;
 
-public:
-	UI::TextBox m_title;
-	std::array<UI::Button, 3> m_buttons;
+private:
+	UI::TextBox title;
+	std::array<UI::Button, 3> buttons;
 };

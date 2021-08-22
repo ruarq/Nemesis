@@ -43,7 +43,7 @@ public:
 	static f32 SoundVolume();
 
 private:
-	static sf_Music_Ptr m_currentMusic;
-	static std::unordered_map<std::string, sf_Music_Ptr> m_musicFiles;
-	static f32 m_musicVolume, m_soundVolume;
+	static sf_Music_Ptr currentMusic;
+	static std::unordered_map<std::string, sf_Music_Ptr> musicFiles;
+	static f32 musicVolume, soundVolume;
 };
