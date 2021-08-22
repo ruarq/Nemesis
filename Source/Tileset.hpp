@@ -6,9 +6,10 @@
 #include <SFML/Graphics.hpp>
 
 #include "Vec2.hpp"
+#include "TextureManager.hpp"
 
 using TileId = u32;
-extern TileId InvalidTileId;
+extern TileId INVALID_TILE_ID;
 
 class Tileset final
 {
@@ -45,6 +46,6 @@ public:
 	Vec2u tileSize;
 
 private:
-	sf::Texture m_tileset;
+	sf::Texture *m_tileset;
 	Vec2u m_numTiles;
 };

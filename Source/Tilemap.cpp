@@ -4,7 +4,7 @@ void Tilemap::Create(const Vec2u &size)
 {
 	m_size = size;
 	m_tiles.resize(size.x * size.y);
-	std::fill(m_tiles.begin(), m_tiles.end(), InvalidTileId);
+	std::fill(m_tiles.begin(), m_tiles.end(), INVALID_TILE_ID);
 }
 
 
@@ -23,7 +23,7 @@ void Tilemap::Render(sf::RenderWindow &window) const
 		for (u32 x = 0; x < m_size.x; x++)
 		{
 			const TileId tileId = m_tiles.at(x + m_size.x * y);
-			if (tileId != InvalidTileId)
+			if (tileId != INVALID_TILE_ID)
 			{
 				tileset.Render(window, sf::FloatRect(x * tileSize.x + offset.x, y * tileSize.y + offset.y, tileSize.x, tileSize.y), tileId);
 			}

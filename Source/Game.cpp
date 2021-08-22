@@ -19,6 +19,7 @@ void Game::Run()
 	 * initialize state
 	 */
 	GameState::Ptr currentState(new MenuState());
+	currentState->game = this;
 	currentState->OnEnter();
 
 	/**

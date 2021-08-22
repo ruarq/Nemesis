@@ -1,6 +1,6 @@
 #include "Tileset.hpp"
 
-TileId InvalidTileId = -1;
+TileId INVALID_TILE_ID = -1;
 
 bool ValidateTileSize(const Vec2u &tilemapSize, const Vec2u &tileSize)
 {
@@ -20,20 +20,21 @@ bool ValidateTileSize(const Vec2u &tilemapSize, const Vec2u &tileSize)
 
 bool Tileset::LoadFromFile(const std::string &filename)
 {
-	if (!m_tileset.loadFromFile(filename))
+	m_tileset = TextureManager::LoadTexture(filename);
+
+	if (!m_tileset)
 	{
-		std::cout << "[Tileset] => Couldn't load tileset \"" << filename << "\"\n";
 		return false;
 	}
 
-	if (!ValidateTileSize(m_tileset.getSize(), tileSize))
+	if (!ValidateTileSize(m_tileset->getSize(), tileSize))
 	{
 		std::cout << "[Tileset] => Couldn't validate tile size of \"" << filename << "\"\n";
 		return false;
 	}
 
-	m_numTiles.x = m_tileset.getSize().x / tileSize.x;
-	m_numTiles.y = m_tileset.getSize().y / tileSize.y;
+	m_numTiles.x = m_tileset->getSize().x / tileSize.x;
+	m_numTiles.y = m_tileset->getSize().y / tileSize.y;
 	
 	return true;
 }
@@ -44,7 +45,7 @@ void Tileset::Render(sf::RenderTarget &target, const sf::FloatRect &dest, const 
 	const sf::IntRect tileRect(tilePos.x, tilePos.y, tileSize.x, tileSize.y);
 
 	sf::Sprite sprite;
-	sprite.setTexture(m_tileset);
+	sprite.setTexture(*m_tileset);
 	sprite.setTextureRect(tileRect);
 	sprite.setPosition(dest.left, dest.top);
 	sprite.setScale(dest.width / f32(tileSize.x), dest.height / f32(tileSize.y));

@@ -4,9 +4,6 @@ using namespace std::string_literals;
 
 void CreditState::OnEnter()
 {
-	// Load the credits font
-	UI::Fonts::Change("FreeMono.ttf");
-
 	// play the happy music again
 	Audio::PlayMusic("happy", true);
 

@@ -11,7 +11,6 @@ bool Fonts::Change(const std::string &filename)
 
 	if (!newFont.loadFromFile(filename))
 	{
-		std::cout << "[UI::Fonts] => Couldn't load font \"" << filename << "\"\n";
 		return false;
 	}
 

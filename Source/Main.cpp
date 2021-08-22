@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+#include "TextureManager.hpp"
+
 int main()
 {
 	Game game;

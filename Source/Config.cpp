@@ -7,6 +7,7 @@ bool Config::LoadFromFile(const std::string &filename)
 
 	if (!configFile.is_open())
 	{
+		std::cout << "[Config] => Couldn't load \"" << filename << "\"\n";
 		return false;
 	}
 
@@ -25,6 +26,7 @@ bool Config::SaveToFile(const std::string &filename) const
 	
 	if (!configFile.is_open())
 	{
+		std::cout << "[Config] => Couldn't save \"" << filename << "\"\n";
 		return false;
 	}
 

@@ -11,7 +11,6 @@ void Audio::Init()
 
 	if (!audioConfig.LoadFromFile(filename))
 	{
-		std::cout << "[Audio] => Couldn't load \"" << filename << "\": continuing with default values.\n";
 		return;
 	}
 
