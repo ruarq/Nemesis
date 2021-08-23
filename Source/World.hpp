@@ -13,6 +13,7 @@ public:
 	void AddEntity(Entity::Ptr entity);
 
 private:
+	
 	std::vector<Entity::Ptr> newEntities;
 	std::vector<Entity::Ptr> entities;
 };

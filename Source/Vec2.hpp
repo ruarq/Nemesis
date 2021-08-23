@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <cmath>
 
 #include <SFML/System/Vector2.hpp>
 
@@ -30,10 +31,35 @@ public:
 	}
 
 public:
+	T Length() const
+	{
+		return std::sqrt(x * x + y * y);
+	}
+
+	Vec2<T> Norm() const
+	{
+		return Vec2<T>(x / this->Length(), y / this->Length());
+	}
+
+public:
 	Vec2<T>& operator+=(const Vec2<T> &other)
 	{
 		x += other.x;
 		y += other.y;
+		return *this;
+	}
+
+	Vec2<T>& operator*=(const Vec2<T> &other)
+	{
+		x *= other.x;
+		y *= other.y;
+		return *this;
+	}
+
+	Vec2<T>& operator*=(const f32 t)
+	{
+		x *= t;
+		y *= t;
 		return *this;
 	}
 
@@ -53,21 +79,45 @@ public:
 };
 
 template<typename T>
-inline bool operator==(const Vec2<T> &a, const Vec2<T> &b)
+bool operator==(const Vec2<T> &a, const Vec2<T> &b)
 {
 	return a.x == b.x && a.y == b.y;
 }
 
 template<typename T>
-inline bool operator!=(const Vec2<T> &a, const Vec2<T> &b)
+bool operator!=(const Vec2<T> &a, const Vec2<T> &b)
 {
 	return !(a == b);
 }
 
+template<typename T>
+Vec2<T> operator*(const Vec2<T> &a, const Vec2<T> &b)
+{
+	return Vec2<T>(a.x * b.x, a.y * b.y);
+}
+
+template<typename T>
+Vec2<T> operator/(const Vec2<T> &a, const Vec2<T> &b)
+{
+	return Vec2<T>(a.x / b.x, a.y / b.y);
+}
+
 template<typename T, typename U>
-inline Vec2<T> operator*(const Vec2<T> &v, const U t)
+Vec2<T> operator*(const Vec2<T> &v, const U t)
 {
 	return Vec2<T>(v.x * t, v.y * t);
+}
+
+template<typename T, typename U>
+Vec2<T> operator*(const T t, const Vec2<U> &v)
+{
+	return v * t;
+}
+
+template<typename T, typename U>
+Vec2<T> operator/(const Vec2<T> &v, const U t)
+{
+	return Vec2<T>(v.x / t, v.y / t);
 }
 
 using Vec2i = Vec2<i32>;

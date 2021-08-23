@@ -6,9 +6,13 @@
 #include "Time.hpp"
 #include "Data.hpp"
 #include "Utility.hpp"
+#include "Input.hpp"
 
 class Player final : public Entity
 {
+public:
+	static constexpr f32 speed = 250.0f;
+
 public:
 	void Create() override;
 	void Update(World &world) override;
