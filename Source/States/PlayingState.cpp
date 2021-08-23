@@ -21,15 +21,19 @@ void PlayingState::OnEnter()
 			tilemap.SetTile(Vec2u(x, y), std::rand() % tilemap.tileset.NumTiles());
 		}
 	}
+
+	world.AddEntity(Entity::Ptr(new Player()));
 }
 
 void PlayingState::Update()
 {
+	world.Update();
 }
 
 void PlayingState::Render() const
 {
 	tilemap.Render(game->window);
+	world.Render(game->window);
 }
 
 GameState::Ptr PlayingState::NextState()

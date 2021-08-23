@@ -30,14 +30,11 @@ public:
 	}
 
 public:
-	bool operator==(const Vec2<T> &other) const
+	Vec2<T>& operator+=(const Vec2<T> &other)
 	{
-		return x == other.x && y == other.y;
-	}
-
-	bool operator!=(const Vec2<T> &other) const
-	{
-		return !(*this == other);
+		x += other.x;
+		y += other.y;
+		return *this;
 	}
 
 	operator sf::Vector2<T>() const
@@ -54,6 +51,24 @@ public:
 public:
 	T x, y;
 };
+
+template<typename T>
+inline bool operator==(const Vec2<T> &a, const Vec2<T> &b)
+{
+	return a.x == b.x && a.y == b.y;
+}
+
+template<typename T>
+inline bool operator!=(const Vec2<T> &a, const Vec2<T> &b)
+{
+	return !(a == b);
+}
+
+template<typename T, typename U>
+inline Vec2<T> operator*(const Vec2<T> &v, const U t)
+{
+	return Vec2<T>(v.x * t, v.y * t);
+}
 
 using Vec2i = Vec2<i32>;
 using Vec2u = Vec2<u32>;

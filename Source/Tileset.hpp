@@ -9,7 +9,7 @@
 #include "TextureManager.hpp"
 
 using TileId = i32;
-extern constexpr TileId INVALID_TILE_ID = -1;
+static constexpr TileId INVALID_TILE_ID = -1;
 
 class Tileset final
 {
