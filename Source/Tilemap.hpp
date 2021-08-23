@@ -14,9 +14,10 @@ class Tilemap final
 public:
 	/**
 	 * @brief create a tilemap
+	 * @param tileSize the size of one tile
 	 * @param size the size of the tilemap (in tiles, not pixels)
 	 */
-	void Create(const Vec2u &size);
+	void Create(const Vec2f &tileSize, const Vec2u &size);
 
 	/**
 	 * @brief set the tiledId of a tile in the tilemap

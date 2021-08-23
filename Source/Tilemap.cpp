@@ -1,7 +1,8 @@
 #include "Tilemap.hpp"
 
-void Tilemap::Create(const Vec2u &size)
+void Tilemap::Create(const Vec2f &tileSize, const Vec2u &size)
 {
+	this->tileSize = tileSize;
 	this->size = size;
 	tiles.resize(size.x * size.y);
 	std::fill(tiles.begin(), tiles.end(), INVALID_TILE_ID);
@@ -47,7 +48,8 @@ bool Tilemap::LoadFromFile(const std::string &filename)
 	}
 	
 	file >> size;
-	this->Create(size);
+	file >> tileSize;
+	this->Create(size, tileSize);
 
 	for (u32 y = 0; y < size.y; y++)
 	{
