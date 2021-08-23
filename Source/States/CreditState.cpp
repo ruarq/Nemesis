@@ -20,7 +20,7 @@ void CreditState::OnEnter()
 	const std::string filename = Data::Other::Path("Credits.txt");
 	std::ifstream file(filename);
 	std::string line;
-
+	
 	if (!file.is_open())
 	{
 		credits.text = "[CreditState] => Couldn't open \""s + filename + "\""s;

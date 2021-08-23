@@ -7,8 +7,6 @@
 #include "../Tilemap.hpp"
 #include "../Tileset.hpp"
 #include "../Time.hpp"
-#include "../World.hpp"
-#include "../Player.hpp"
 
 class PlayingState final : public GameState
 {
@@ -23,7 +21,6 @@ public:
 	GameState::Ptr NextState() override;
 
 private:
-	World world;
 	Tilemap tilemap;
 	f32 currentTile = 0.0f;
 };
