@@ -12,7 +12,6 @@ void PlayingState::OnEnter()
 
 	tilemap.LoadFromFile(Data::Maps::Path("Handcrafted.map"));
 	tilemap.tileset = ts;
-	tilemap.tileSize = Vec2f(32.0f, 32.0f);
 	
 	for (u32 y = 0; y < tilemap.Size().y; y++)
 	{

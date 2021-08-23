@@ -49,7 +49,7 @@ bool Tilemap::LoadFromFile(const std::string &filename)
 	
 	file >> size;
 	file >> tileSize;
-	this->Create(size, tileSize);
+	this->Create(tileSize, size);
 
 	for (u32 y = 0; y < size.y; y++)
 	{
