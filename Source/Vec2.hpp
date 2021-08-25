@@ -38,7 +38,16 @@ public:
 
 	Vec2<T> Norm() const
 	{
-		return Vec2<T>(x / this->Length(), y / this->Length());
+		const float length = this->Length();
+
+		if (length > 0.0f)
+		{
+			return Vec2<T>(x / length, y / length);
+		}
+		else
+		{
+			return Vec2<T>();
+		}
 	}
 
 public:
@@ -88,6 +97,12 @@ template<typename T>
 bool operator!=(const Vec2<T> &a, const Vec2<T> &b)
 {
 	return !(a == b);
+}
+
+template<typename T>
+Vec2<T> operator-(const Vec2<T> &a, const Vec2<T> &b)
+{
+	return Vec2<T>(a.x - b.x, a.y - b.y);
 }
 
 template<typename T>

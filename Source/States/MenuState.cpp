@@ -1,6 +1,6 @@
 #include "MenuState.hpp"
 
-#include "PlayingState.hpp"
+#include "MapGenerationState.hpp"
 #include "OptionsState.hpp"
 #include "CreditState.hpp"
 
@@ -57,7 +57,7 @@ GameState::Ptr MenuState::NextState()
 {
 	if (buttons[MENUSTATE_PLAY_BTN].IsPressed())
 	{
-		return GameState::Ptr(new PlayingState());
+		return GameState::Ptr(new MapGenerationState());
 	}
 	else if (buttons[MENUSTATE_OPTIONS_BTN].IsPressed())
 	{

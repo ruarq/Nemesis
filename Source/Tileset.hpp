@@ -7,9 +7,7 @@
 
 #include "Vec2.hpp"
 #include "TextureManager.hpp"
-
-using TileId = i32;
-static constexpr TileId INVALID_TILE_ID = -1;
+#include "Types.hpp"
 
 class Tileset final
 {

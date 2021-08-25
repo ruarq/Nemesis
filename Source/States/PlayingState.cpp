@@ -2,6 +2,11 @@
 
 #include "MenuState.hpp"
 
+PlayingState::PlayingState(Tilemap &&tilemap)
+{
+	world.tilemap = tilemap;
+}
+
 void PlayingState::OnEnter()
 {
 	Audio::PlayMusic("horror", true);
@@ -10,25 +15,29 @@ void PlayingState::OnEnter()
 	ts.tileSize = Vec2u(8, 8);
 	ts.LoadFromFile(Data::Images::Path("Dungeon tileset.png"));
 
-	tilemap.LoadFromFile(Data::Maps::Path("Handcrafted.map"));
-	tilemap.tileset = ts;
+	world.tilemap.LoadFromFile(Data::Maps::Path("Handcrafted.map"));
+	world.tilemap.tileset = ts;
 	
-	for (u32 y = 0; y < tilemap.Size().y; y++)
+	for (u32 y = 0; y < world.tilemap.Size().y; y++)
 	{
-		for (u32 x = 0; x < tilemap.Size().x; x++)
+		for (u32 x = 0; x < world.tilemap.Size().x; x++)
 		{
-			tilemap.SetTile(Vec2u(x, y), std::rand() % tilemap.tileset.NumTiles());
+			world.tilemap.SetTile(Vec2u(x, y), std::rand() % world.tilemap.tileset.NumTiles());
 		}
 	}
+
+	world.CreateEntity<Player>();
+	world.CreateEntity<Nemesis>();
 }
 
 void PlayingState::Update()
 {
+	world.Update();
 }
 
 void PlayingState::Render() const
 {
-	tilemap.Render(game->window);
+	world.Render(game->window);
 }
 
 GameState::Ptr PlayingState::NextState()

@@ -7,11 +7,17 @@
 #include "../Tilemap.hpp"
 #include "../Tileset.hpp"
 #include "../Time.hpp"
+#include "../World.hpp"
+#include "../Player.hpp"
+#include "../Nemesis.hpp"
 
 class PlayingState final : public GameState
 {
 public:
 	using Ptr = std::unique_ptr<PlayingState>;
+
+public:
+	PlayingState(Tilemap &&tilemap);
 
 public:
 	void OnEnter() override;
@@ -21,6 +27,5 @@ public:
 	GameState::Ptr NextState() override;
 
 private:
-	Tilemap tilemap;
-	f32 currentTile = 0.0f;
+	World world;
 };
