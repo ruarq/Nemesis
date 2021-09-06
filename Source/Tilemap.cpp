@@ -1,5 +1,14 @@
 #include "Tilemap.hpp"
 
+
+Tilemap::Tilemap(const Tilemap &other)
+{
+	this->Create(other.size, other.Size());
+	offset = other.offset;
+	tileset = other.tileset;
+	tiles = other.tiles;
+}
+
 void Tilemap::Create(const Vec2f &tileSize, const Vec2u &size)
 {
 	this->tileSize = tileSize;
@@ -7,7 +16,6 @@ void Tilemap::Create(const Vec2f &tileSize, const Vec2u &size)
 	tiles.resize(size.x * size.y);
 	std::fill(tiles.begin(), tiles.end(), INVALID_TILE_ID);
 }
-
 
 void Tilemap::SetTile(const Vec2u &pos, const TileId tile_id)
 {

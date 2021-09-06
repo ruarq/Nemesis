@@ -12,6 +12,10 @@
 class Tilemap final
 {
 public:
+	Tilemap() = default;
+	Tilemap(const Tilemap &other);
+
+public:
 	/**
 	 * @brief create a tilemap
 	 * @param tileSize the size of one tile

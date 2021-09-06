@@ -29,6 +29,37 @@ struct BSPTreeRoom final : public BSPTreeNode
 	u32 x, y, w, h;
 };
 
-std::shared_ptr<BSPTreeNode> GenerateBSPTree(const u32 w, const u32 h, const u32 depth);
+struct MapGenInfo final
+{
+	u32 w, h, depth;
+};
+
+class RoomTileIds final
+{
+public:
+	enum Corner
+	{
+		TopLeft,
+		TopRight,
+		BottomLeft,
+		BottomRight
+	};
+
+	enum Edge
+	{
+		Top,
+		Left,
+		Right,
+		Bottom
+	};
+
+public:
+	TileId corner[4];
+	TileId edge[4];
+};
+
+std::shared_ptr<BSPTreeNode> GenerateBSPTree(const MapGenInfo &mgi);
 std::shared_ptr<BSPTreeNode> Split(const u32 currDepth, const u32 maxDepth, const u32 x, const u32 y, const u32 w, const u32 h);
-Tilemap GenerateMap(std::shared_ptr<BSPTreeNode> tree);
+Tilemap GenerateMap(const Vec2u &tileSize, const MapGenInfo &mgi, const RoomTileIds &rti);
+void PutBSPTree(Tilemap &tm, std::shared_ptr<BSPTreeNode> tree, const RoomTileIds &rti);
+void PutRoom(Tilemap &tm, std::shared_ptr<BSPTreeRoom> room, const RoomTileIds &rti);

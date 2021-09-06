@@ -16,6 +16,5 @@ public:
 	std::unique_ptr<GameState> NextState() override;
 
 private:
-	std::shared_ptr<BSPTreeNode> tree;
 	Tilemap tilemap;
 };

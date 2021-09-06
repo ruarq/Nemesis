@@ -22,7 +22,23 @@ void DrawTree(sf::RenderWindow &window, const std::shared_ptr<BSPTreeNode> &node
 
 void MapGenerationState::OnEnter()
 {
-	tree = GenerateBSPTree(game->window.getSize().x, game->window.getSize().y, 5);
+	RoomTileIds rti;
+	rti.corner[RoomTileIds::TopLeft] = 0;
+	rti.corner[RoomTileIds::TopRight] = 1;
+	rti.corner[RoomTileIds::BottomLeft] = 2;
+	rti.corner[RoomTileIds::BottomRight] = 3;
+
+	rti.edge[RoomTileIds::Top] = 4;
+	rti.edge[RoomTileIds::Left] = 5;
+	rti.edge[RoomTileIds::Right] = 6;
+	rti.edge[RoomTileIds::Bottom] = 7;
+
+	MapGenInfo mgi;
+	mgi.w = 25;
+	mgi.h = 25;
+	mgi.depth = 1;
+
+	tilemap = GenerateMap(Vec2u(16, 16), mgi, rti);
 }
 
 void MapGenerationState::Update()
@@ -31,7 +47,7 @@ void MapGenerationState::Update()
 
 void MapGenerationState::Render() const
 {
-	DrawTree(game->window, tree);
+	tilemap.Render(game->window);
 }
 
 std::unique_ptr<GameState> MapGenerationState::NextState()
